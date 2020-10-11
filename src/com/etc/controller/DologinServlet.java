@@ -44,8 +44,8 @@ public class DologinServlet extends HttpServlet {
 			 if (result>0){
 				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
 				 session.setAttribute("sid", result);
-				 response.sendRedirect("../storeMange/admin-index.html");
-				 //request.getRequestDispatcher("../storeMange/admin-index.html").forward(request, response);
+				 response.sendRedirect("../storeMange/admin-index.jsp");
+
 			 } else{
 				 System.out.println(result);
 				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");

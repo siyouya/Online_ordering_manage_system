@@ -23,7 +23,8 @@ public class StoreServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int sid= Integer.parseInt(request.getParameter("sid"));
+	//	int sid= Integer.parseInt(request.getParameter("sid"));
+		int sid=2;
 		String op = request.getParameter("op");
 		String shopname=request.getParameter("shopname");
 		String realname=request.getParameter("realname");
@@ -31,18 +32,16 @@ public class StoreServlet extends HttpServlet {
 		String address=request.getParameter("address");
 		String intro=request.getParameter("intro");
 		StoreDao storeDao=new StoreDao();
-		System.out.println(op);
 		HttpSession  session   = request.getSession();
 		 if ("query".equals(op)) {
 			 List<Store> list   = storeDao.query(sid);
-
 			 session.setAttribute("list", list);
 			 response.sendRedirect("../storeMange/admin-user.jsp");
 		}else if("update".equals(op)){
-		 	 storeDao.update(shopname,realname,telephone,address,intro,sid);
+			 int result=storeDao.update(shopname,realname,telephone,address,intro,sid);
 			 List<Store> list   = storeDao.query(sid);
 			 session.setAttribute("list", list);
-			 // response.sendRedirect("login.jsp");
+			 response.sendRedirect("../storeMange/admin-user.jsp");
 
 
 		 }
