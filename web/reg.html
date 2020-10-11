@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>纸叠效果会员登录界面模板</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/body.css"/>
+</head>
+<body>
+<script type="text/javascript">
+	function show(){
+		var profess=document.getElementById("test").value;
+		var sui=document.getElementById("shopname");
+		var aui=document.getElementById("address");
+		if(profess=="store"){
+			sui.style.display="";
+			document.getElementById("shopname").value="";
+		}else if(profess=="rider"){
+			aui.style.display="none";
+			sui.style.display="none";
+		}else if(profess=="customer"){
+			sui.style.display="none";
+			aui.style.display="";
+		}
+	}
+</script>
+<div class="container">
+	<section id="content">
+		<form action="/reg/reg" method="post" >
+			<h1>注册</h1>
+			<div>
+				<select id="test" name="profession" onchange="show()">
+					<option value="customer">顾客</option>
+					<option value="store">商家</option>
+					<option value="rider">骑手</option>
+				</select>
+			</div>
+			<div>
+				<input type="text"  style="display:none" placeholder="饭店名称" required="" id="shopname" name="shopname" value="null"/>
+			</div>
+			<div>
+				<input type="text" placeholder="用户名" required="" id="username" name="username" />
+			</div>
+			<div>
+				<input type="password" placeholder="密码" required="" id="password" name="password" />
+			</div>
+			<div>
+				<input type="text" placeholder="真实姓名" required="" id="realname" name="realname" />
+			</div>
+			<div>
+				<input type="text" placeholder="电话号码" required="" id="telephone" name="telephone" />
+			</div>
+			<div>
+				<input type="text" placeholder="地址" required="" id="address" name="address" />
+			</div>
+
+			 <div class="">
+				<span class="help-block u-errormessage" >&nbsp;</span>			</div>
+			<div>
+				<!-- <input type="submit" value="Log in" /> -->
+				<input type="submit" value="登录" class="btn btn-primary" id="js-btn-login"/>
+				<a href="#">忘记密码?</a>
+				<!-- <a href="#">Register</a> -->
+			</div>
+		</form><!-- form -->
+		 <div class="button">
+			<span class="help-block u-errormessage" >&nbsp;</span>
+			<a href="login.html">登入</a>
+		</div> <!-- button -->
+	</section><!-- content -->
+</div>
+<!-- container -->
+
+
+<br><br><br><br>
+<div style="text-align:center;">
+</div>
+</body>
+
+</html>
