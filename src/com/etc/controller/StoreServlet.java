@@ -25,14 +25,27 @@ public class StoreServlet extends HttpServlet {
 		
 		int sid= Integer.parseInt(request.getParameter("sid"));
 		String op = request.getParameter("op");
+		String shopname=request.getParameter("shopname");
+		String realname=request.getParameter("realname");
+		String telephone=request.getParameter("telephone");
+		String address=request.getParameter("address");
+		String intro=request.getParameter("intro");
 		StoreDao storeDao=new StoreDao();
+		System.out.println(op);
+		HttpSession  session   = request.getSession();
 		 if ("query".equals(op)) {
 			 List<Store> list   = storeDao.query(sid);
 
-			 request.setAttribute("list", list);
-			 //request.getRequestDispatcher("admin-admin.html").forward(request, response);
+			 session.setAttribute("list", list);
 			 response.sendRedirect("../storeMange/admin-user.jsp");
-		}
+		}else if("update".equals(op)){
+		 	 storeDao.update(shopname,realname,telephone,address,intro,sid);
+			 List<Store> list   = storeDao.query(sid);
+			 session.setAttribute("list", list);
+			 // response.sendRedirect("login.jsp");
+
+
+		 }
 
 	}
 

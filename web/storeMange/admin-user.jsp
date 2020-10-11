@@ -1,7 +1,7 @@
-
+<%@ page import="com.etc.entity.Store" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
   String path = request.getContextPath();
   String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -145,15 +145,18 @@
         </div>
 
       </div>
-      <c:forEach items="${list}" var="store">
 
+<% List<Store> list= (List<Store>) session.getAttribute("list");
+    for(Store store:list){
+
+%>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form class="am-form am-form-horizontal" action="">
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">商店名称</label>
             <div class="am-u-sm-9">
-              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="1">
+              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="<%=store.getShopname() %>">
 
             </div>
           </div>
@@ -161,7 +164,7 @@
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">真实姓名</label>
             <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名">
+              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="<%=store.getRealname() %>">
 
             </div>
           </div>
@@ -169,14 +172,14 @@
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone">
+              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="<%=store.getTelephone()%>">
             </div>
           </div>
 
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">地址</label>
             <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的商家地址">
+              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="<%=store.getAddress()%>">
             </div>
           </div>
 
@@ -184,13 +187,14 @@
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
             <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介"></textarea>
+              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >123</textarea>
             </div>
           </div>
-          </c:forEach>
+<% }%>
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
               <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->
+              <input type="hidden" class="am-btn am-btn-primary" name="op" value="update" />
               <input type="submit" class="am-btn am-btn-primary" value="保存修改" />
             </div>
           </div>

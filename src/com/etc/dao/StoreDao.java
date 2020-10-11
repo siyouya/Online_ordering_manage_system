@@ -56,4 +56,11 @@ public class StoreDao {
         return list;
     }
 
+    public int update(String shopname,String realname,String telephone,String address, String intro,int sid){
+        int count  =DBUtils.doUpdate("update  suser set shopname=?,realname=?,telephone=?,address=?,intro=? where sid=?; ",shopname,realname,telephone,address,intro,sid);
+        return count;
+    }
+
+
+
 }
