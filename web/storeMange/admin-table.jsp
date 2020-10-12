@@ -101,6 +101,21 @@
   function for4() {
     $('form3').submit;
   }
+  function mutildel() {
+    var result = "";
+    var count = 0;
+    $(".checkb").each(function () {
+      if ($(this).is(':checked')) {
+        result += $(this).val() + ",";
+        count++;
+      } else {
+      }
+    });
+    if (!confirm("确定删除这" + count + "件商品?")) {
+      return;
+    }
+    window.location.href = "/dish?op=mutildel&tag=" + result;
+  }
 </script>
 <div class="am-cf admin-main">
   <!-- sidebar start -->
@@ -142,7 +157,7 @@
   <div class="admin-content">
 
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">表格</strong> / <small>Table</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">菜品列表</strong> / <small>Menu</small></div>
     </div>
 
     <div class="am-g">
@@ -151,22 +166,11 @@
           <div class="am-btn-toolbar am-fl">
             <div class="am-btn-group am-btn-group-xs">
               <button type="button" class="am-btn am-btn-default"  data-toggle="modal" data-target="#myModal"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+
+              <button type="button" class="am-btn am-btn-default" onclick="mutildel()"><span class="am-icon-trash-o"></span> 删除</button>
             </div>
 
-            <div class="am-form-group am-margin-left am-fl">
-              <select>
-                <option value="option1">所有类别</option>
-                <option value="option2">IT业界</option>
-                <option value="option3">数码产品</option>
-                <option value="option3">笔记本电脑</option>
-                <option value="option3">平板电脑</option>
-                <option value="option3">只能手机</option>
-                <option value="option3">超极本</option>
-              </select>
-            </div>
+
           </div>
         </div>
       </div>
@@ -201,7 +205,7 @@
               for(Disher dish:list){
             %>
             <tr id="tr<%=dish.getDid()%>">
-              <td><input type="checkbox" /></td>
+              <td><input type="checkbox" class="checkb" value="<%=dish.getDid()%>"/></td>
               <td><%=dish.getDid()%></td>
               <td><%=dish.getDishname()%></td>
               <td><%=dish.getNumber()%></td>
@@ -212,7 +216,7 @@
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
                     <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for3('tr<%=dish.getDid()%>')" data-toggle="modal"  data-target="#myModal2" ><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-copy"></span> 复制</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs"><a href="/dish?op=sellout&did=<%=dish.getDid()%>"><span class="am-icon-copy" id="sellout"></span> 售罄</a></button>
                     <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(<%=dish.getDid()%>)"><span class="am-icon-trash-o"></span> 删除</button>
                   </div>
                 </div>

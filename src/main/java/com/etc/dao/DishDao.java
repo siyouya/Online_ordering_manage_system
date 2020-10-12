@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DishDao {
-    public List<Disher> query() throws SQLException {
+    public List<Disher> query(int sid) throws SQLException {
 
         ArrayList<Disher> list=new ArrayList<Disher>();
 
-        ResultSet rs = DBUtils.doQuery("select * from dishes ");
+        ResultSet rs = DBUtils.doQuery("select * from dishes where sid=?",sid);
         while(rs.next()){
 
             list.add(new Disher(rs.getInt("did"),rs.getString("dishname"),
@@ -38,6 +38,10 @@ public class DishDao {
     }
     public int adddish( String dishname, String number, String rmaterial, String price, String sid) {
         int count  =DBUtils.doUpdate("insert into  dishes (dishname,number,rmaterial,price,sid) values (?,?,?,?,?); ",dishname,number,rmaterial,price,sid);
+        return count;
+    }
+    public int sellout(int did) {
+        int count  =DBUtils.doUpdate("update  dishes set number=0 where did=?; ",did);
         return count;
     }
 }
