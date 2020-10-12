@@ -21,7 +21,7 @@ public class DologinServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("utf-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String profession=request.getParameter("profession");
@@ -31,7 +31,7 @@ public class DologinServlet extends HttpServlet {
 			 int result=customerDao.checklogin(username,password);
 			 if (result>0){
 				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
-				 request.getRequestDispatcher("../register.jsp").forward(request, response);
+				 request.getRequestDispatcher("../customerMange/").forward(request, response);
 			 } else{
 				 System.out.println(result);
 				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");
@@ -42,10 +42,9 @@ public class DologinServlet extends HttpServlet {
 
 			 int result=storeDao.checklogin(username,password);
 			 if (result>0){
-				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
+				 session.setAttribute("msg", "sucess");
 				 session.setAttribute("sid", result);
 				 response.sendRedirect("../storeMange/admin-index.jsp");
-
 			 } else{
 				 System.out.println(result);
 				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");
@@ -56,7 +55,8 @@ public class DologinServlet extends HttpServlet {
 			 int result= riderDao.checklogin(username,password);
 			 if (result>0){
 				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
-				 request.getRequestDispatcher("../register.jsp").forward(request, response);
+				 response.sendRedirect("../riderMange/rider-index.jsp");
+			//	 request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
 				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");

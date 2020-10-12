@@ -23,7 +23,7 @@ public class StoreServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	//	int sid= Integer.parseInt(request.getParameter("sid"));
+		request.setCharacterEncoding("utf-8");
 		int sid=2;
 		String op = request.getParameter("op");
 		String shopname=request.getParameter("shopname");

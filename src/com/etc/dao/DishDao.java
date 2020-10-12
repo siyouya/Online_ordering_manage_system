@@ -14,7 +14,7 @@ public class DishDao {
 
         ArrayList<Disher> list=new ArrayList<Disher>();
 
-        ResultSet rs = DBUtils.doQuery("select * from disher ");
+        ResultSet rs = DBUtils.doQuery("select * from dishes ");
         while(rs.next()){
 
             list.add(new Disher(rs.getInt("did"),rs.getString("dishname"),

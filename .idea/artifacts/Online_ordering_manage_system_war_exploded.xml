@@ -7,6 +7,16 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Online_ordering_manage_system" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.18-bin" />
+          <element id="library" level="project" name="taglibs-standard-jstlel-1.2.5" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jar/taglibs-standard-impl-1.2.5.jar" />
+          <element id="library" level="project" name="taglibs-standard-impl-1.2.5" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.18-bin (3)" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jar/taglibs-standard-jstlel-1.2.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jar/mysql-connector-java-5.1.18-bin.jar" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+        </element>
       </element>
     </root>
   </artifact>

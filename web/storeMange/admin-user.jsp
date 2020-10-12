@@ -1,13 +1,16 @@
 <%@ page import="com.etc.entity.Store" %>
 <%@ page import="java.util.List" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
   String path = request.getContextPath();
   String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
           + path + "/";
 
 %>
+
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setCharacterEncoding("utf-8"); %>
 
 <html class="no-js">
 <head>
@@ -145,7 +148,9 @@
         </div>
 
       </div>
-
+      <c:if test="${!empty msg}">
+        <h1>${msg }</h1>
+      </c:if>
 <% List<Store> list= (List<Store>) session.getAttribute("list");
     for(Store store:list){
 

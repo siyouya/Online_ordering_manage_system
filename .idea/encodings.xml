@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/com/etc/controller/CustomerServlet.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/etc/controller/CustomerServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/etc/controller/DishServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/etc/entity/Disher.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/etc/test/main.java" charset="UTF-8" />
