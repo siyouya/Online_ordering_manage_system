@@ -1,9 +1,7 @@
 package com.etc.controller;
 
 import com.etc.dao.RiderDao;
-import com.etc.dao.StoreDao;
 import com.etc.entity.Rider;
-import com.etc.entity.Store;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,26 +20,29 @@ public class RiderServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session=request.getSession();
 		request.setCharacterEncoding("utf-8");
-		int rid=3;
+		int rid= Integer.valueOf((String) session.getAttribute("rid"));
 		String op = request.getParameter("op");
-		String realname=request.getParameter("realname");
-		String telephone=request.getParameter("telephone");
-
 		RiderDao riderDao=new RiderDao();
-		HttpSession  session   = request.getSession();
 		 if ("query".equals(op)) {
 			 List<Rider> list   = riderDao.query(rid);
 			 session.setAttribute("list", list);
 			 response.sendRedirect("../riderMange/rider-user.jsp");
 		}else if("update".equals(op)){
+			 String realname=request.getParameter("realname");
+			 String telephone=request.getParameter("telephone");
 			 int result=riderDao.update(realname,telephone,rid);
 			 List<Rider> list   = riderDao.query(rid);
 			 session.setAttribute("list", list);
 			 response.sendRedirect("../riderMange/rider-user.jsp");
-
-
+		 }else if ("modifypas".equals(op)){
+			 response.sendRedirect("../riderMange/rider-modifypas.jsp");
+		 }else if ("modifypassword".equals(op)){
+			 String newpassword=request.getParameter("newpassword");
+			 String newpassword2=request.getParameter("newpassword2");
+			 riderDao.modifypas(newpassword,rid);
+			 response.sendRedirect("../riderMange/rider-modifypas.jsp");
 		 }
 
 	}

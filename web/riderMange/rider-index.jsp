@@ -19,11 +19,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <link rel="icon" type="image/png" href="/riderMange/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/riderMange/assets/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="/riderMange/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/riderMange/assets/css/admin.css">
 
 </head>
 <body>
@@ -66,8 +66,8 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/rider?op=query&rid=3" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="rider-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+          <li><a href="/rider?op=query&rid=<%=session.getAttribute("rid") %>" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/rider?op=modifypas&rid=<%=session.getAttribute("rid") %>"><span class="am-icon-puzzle-piece"></span>修改密码</a></li>
           <li><a href="rider-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
           <li><a href="rider-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
           <li><a href="rider-404.jsp"><span class="am-icon-bug"></span> 404</a></li>

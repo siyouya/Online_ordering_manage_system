@@ -1,7 +1,6 @@
 package com.etc.dao;
 
 import com.etc.entity.Rider;
-import com.etc.entity.Store;
 import com.etc.util.DBUtils;
 
 import java.sql.ResultSet;
@@ -57,4 +56,10 @@ public class RiderDao {
         int count  =DBUtils.doUpdate("update  ruser set realname=?,telephone=? where rid=?; ",realname,telephone,rid);
         return count;
     }
+
+   public int  modifypas(String password,int rid){
+        int count=DBUtils.doUpdate("update  ruser set password=? where rid=?;",password,rid);
+        return count;
+   }
+
 }

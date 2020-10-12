@@ -1,7 +1,7 @@
 <%@ page import="com.etc.entity.Store" %>
 <%@ page import="java.util.List" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
   String path = request.getContextPath();
   String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -9,13 +9,16 @@
 
 %>
 
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setCharacterEncoding("utf-8"); %>
+
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze后台管理系统模板HTML帮助页面 - cssmoban</title>
-  <meta name="description" content="这是一个 help 页面">
-  <meta name="keywords" content="help">
+  <title>商家后台管理系统</title>
+  <meta name="description" content="这是一个 user 页面">
+  <meta name="keywords" content="user">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -24,6 +27,7 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -33,7 +37,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong>后台管理模板帮助页面</strong> <small></small>
+    <strong></strong> <small>后台管理模板</small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -65,8 +69,8 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="admin-user.jsp" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="admin-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+          <li><a href="/store?op=query&sid=<%=(int)session.getAttribute("sid") %>" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/store?op=modifypas&sid=<%=(int)session.getAttribute("sid") %>"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
           <li><a href="admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
           <li><a href="admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
           <li><a href="admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
@@ -80,14 +84,14 @@
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
         <p><span class="am-icon-bookmark"></span> 公告</p>
-        <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
+        <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
       </div>
     </div>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
         <p><span class="am-icon-tag"></span> wiki</p>
-        <p>Welcome to the Amaze!</p>
+        <p>Welcome to the Amaze UI wiki!</p>
       </div>
     </div>
   </div>
@@ -96,35 +100,91 @@
   <!-- content start -->
   <div class="admin-content">
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">帮助页面</strong> / <small>Help Page</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
     </div>
 
     <hr/>
 
     <div class="am-g">
-      <div class="am-u-sm-12 am-u-sm-centered">
-        <h2>Amaze Beta</h2>
-        <p>对于 Amaze，我们不是创造者。</p>
-        <p>Amaze的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。</p>
-        <p>感谢开源！感谢有你！</p>
-        <hr/>
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-4">
+                <img class="am-img-circle am-img-thumbnail" src="http://amui.qiniudn.com/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" alt=""/>
+              </div>
+              <div class="am-u-md-8">
+                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                <form class="am-form">
+                  <div class="am-form-group">
+                    <input type="file" id="user-pic">
+                    <p class="am-form-help">请选择要上传的文件...</p>
+                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="user-info">
+              <p>等级信息</p>
+              <div class="am-progress am-progress-sm">
+                <div class="am-progress-bar" style="width: 60%"></div>
+              </div>
+              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
+            </div>
+            <div class="user-info">
+              <p>信用信息</p>
+              <div class="am-progress am-progress-sm">
+                <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+              </div>
+              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
+            </div>
+          </div>
+        </div>
+
       </div>
+      <c:if test="${!empty msg}">
+        <h1>${msg }</h1>
+      </c:if>
+
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <h3>Bug 反馈</h3>
-        <p>感谢对 Amaze 的关注和支持，如遇到 Bug 或者使用问题，可以通过以下途径反馈给我们：</p>
-        <ol>
-          <li>在 GitHub 项目主页提交 <a href="">Issue</a>。</li>
-          <li>在 GitHub 项目主页提交 <a href="">Issue</a>。</li>
-        </ol>
-        <p>反馈注意事项</p>
-        <p>为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。</p>
-        <p>下面的几个链接是我们在几个在线调试工具上建的页面， 已经引入了 Amaze UI 样式和脚本，你可以选择你喜欢的工具【Fork】一份， 把要有问题的场景粘在里面，反馈给我们。</p>
-        <ol>
-          <li><a href="http://jsbin.com/kijiqu/1/edit?html,output" target="_blank">JSBin</a> </li>
-          <li><a href="http://jsfiddle.net/hegfirose/W22fV/" target="_blank">JSFiddle</a> </li>
-          <li><a href="http://codepen.io/minwe/pen/AEeup" target="_blank">CodePen</a> </li>
-        </ol>
+        <form class="am-form am-form-horizontal" action="/store" method="get" >
+
+          <div class="am-form-group">
+            <label  class="am-u-sm-3 am-form-label">当前密码</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="password" placeholder="请输入当前密码" name="password" >
+
+            </div>
+          </div>
+          <div class="am-form-group">
+            <label  class="am-u-sm-3 am-form-label">新密码</label>
+            <div class="am-u-sm-9">
+              <input type="password" id="newpassword" placeholder="新密码" name="newpassword" >
+
+            </div>
+          </div>
+          <div class="am-form-group">
+            <label  class="am-u-sm-3 am-form-label">确认新密码</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="newpassword2" placeholder="确认新密码" name="newpassword2" >
+
+            </div>
+          </div>
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->
+              <input type="hidden" class="am-btn am-btn-primary" name="op" value="modifypassword" />
+              <input type="submit" class="am-btn am-btn-primary" value="修改密码" />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

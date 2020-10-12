@@ -4,10 +4,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   String path = request.getContextPath();
-  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-          + path + "/";
-
+  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/"+"storeMange";
 %>
+
+
 
 <html class="no-js">
 <head>
@@ -19,11 +19,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <link rel="icon" type="image/png" href="/storeMange/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/storeMange/assets/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="/storeMange/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/storeMange/assets/css/admin.css">
 
 </head>
 <body>
@@ -66,14 +66,15 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/store?op=query&sid=2" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="admin-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-          <li><a href="admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-          <li><a href="admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
-          <li><a href="admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
+          <li><a href="/store?op=query&sid=<%=session.getAttribute("sid") %>" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/store?op=modifypas&sid=<%=session.getAttribute("sid") %>"><span class="am-icon-puzzle-piece"></span> 修改密码</a></li>
+          <li><a href="../admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
+          <li><a href="../admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
+          <li><a href="../admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
         </ul>
       </li>
-      <li><a href="/Dish/Dish?op=select"><span class="am-icon-table"></span> 表格</a></li>
+      <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
+      <li><a href="#"><span class="am-icon-table"></span> 订单</a></li>
       <li><a href="admin-form.jsp"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
       <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>

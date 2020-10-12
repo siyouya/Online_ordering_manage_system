@@ -61,6 +61,12 @@ public class StoreDao {
         return count;
     }
 
+    public int modifypas(String password,int sid){
+        int count  =DBUtils.doUpdate("update  suser set password=? where sid=?; ",password,sid);
+        return count;
+    }
+
+
 
 
 }

@@ -3,7 +3,6 @@ package com.etc.controller;
 import com.etc.dao.CustomerDao;
 import com.etc.dao.RiderDao;
 import com.etc.dao.StoreDao;
-import com.etc.util.DBUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,11 +29,11 @@ public class DologinServlet extends HttpServlet {
 			CustomerDao customerDao=new CustomerDao();
 			 int result=customerDao.checklogin(username,password);
 			 if (result>0){
-				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
+				 session.setAttribute("msg", "æˆåŠŸ");
 				 request.getRequestDispatcher("../customerMange/").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØĞÂµÇÂ¼");
+				 session.setAttribute("msg", "");
 			 }
 		}else if ("store".equals(profession)) {
 
@@ -42,24 +41,24 @@ public class DologinServlet extends HttpServlet {
 
 			 int result=storeDao.checklogin(username,password);
 			 if (result>0){
-				 session.setAttribute("msg", "sucess");
+				 session.setAttribute("msg", "æˆåŠŸ");
 				 session.setAttribute("sid", result);
-				 response.sendRedirect("../storeMange/admin-index.jsp");
+				 request.getRequestDispatcher("../storeMange/admin-index.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØĞÂµÇÂ¼");
+				 session.setAttribute("msg", "æˆåŠŸ");
 			 }
 
 		}else if ("rider".equals(profession)) {
 			 RiderDao riderDao=new RiderDao();
 			 int result= riderDao.checklogin(username,password);
 			 if (result>0){
-				 session.setAttribute("msg", "µÇÂ¼³É¹¦");
-				 response.sendRedirect("../riderMange/rider-index.jsp");
-			//	 request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
+				 session.setAttribute("msg", "æˆåŠŸ");
+				 session.setAttribute("rid", result);
+				 request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØĞÂµÇÂ¼");
+				 session.setAttribute("msg", "æˆåŠŸ");
 			 }
 		}
 
