@@ -1,6 +1,6 @@
 package com.etc.dao;
 
-import com.etc.entity.Customer;
+
 import com.etc.entity.Disher;
 import com.etc.util.DBUtils;
 

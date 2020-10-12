@@ -36,7 +36,7 @@ public class DishServlet extends HttpServlet {
     public void showDish(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query();
         request.setAttribute("list", list);
-		request.getRequestDispatcher("admin-table.jsp").forward(request, response);
+		request.getRequestDispatcher("../storeMange/admin-table.jsp").forward(request, response);
 
     }
 }
