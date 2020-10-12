@@ -5,6 +5,8 @@
 <title>纸叠效果会员登录界面模板</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/body.css"/>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.fancyspinbox.js"></script>
 </head>
 <body>
 <div class="container">
@@ -12,12 +14,12 @@
 		<form action="/login/login" method="post">
 			<h1>登录</h1>
 			<div>
-				<select name="profession">
+				<select class="my-menu" id="test" >
 					<option value="customer">顾客</option>
 					<option value="store">商家</option>
 					<option value="rider">骑手</option>
 				</select>
-			</div>
+			</div><br/>
 			<div>
 				<input type="text" placeholder="用户名" required="" id="username" name="username" />
 			</div>
@@ -45,5 +47,10 @@
 <br><br><br><br>
 <div style="text-align:center;">
 </div>
+
+<script>
+	$('.my-menu').fancyspinbox();
+</script>
+
 </body>
 </html>

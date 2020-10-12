@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>纸叠效果会员登录界面模板</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/body.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>纸叠效果会员登录界面模板</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/body.css"/>
 </head>
 <body>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.fancyspinbox.js"></script>
 <script type="text/javascript">
 	function show(){
 		var profess=document.getElementById("test").value;
@@ -23,38 +24,154 @@
 			aui.style.display="";
 		}
 	}
+	function check(){
+		if($('span').is('.wrong')){
+			alert("请填写正确信息");
+			return false;
+		}else{
+			return true;
+		}
+
+	}
 </script>
+
+<script>
+
+
+	$(function () {
+
+		var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,12}$/;
+		var pattern = /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{6,12}$/;
+		var tpatten = /^1[34578]\d{9}$/;
+		var rname= /^[\u4e00-\u9fa5]{2,12}$/;
+
+
+
+		$('.repassword').on('blur', function () {
+			var pwd = $('.password').val();
+			var repwd = $('.repassword').val();
+			if (pwd==repwd) {
+				$(this).siblings('span').removeClass('wrong');
+				$(this).siblings('span').addClass('right');
+				$(this).siblings('span').html('');
+
+			} else{
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('两次输入的密码不一样');
+				return false;
+			}
+		});
+
+
+		$('.username','.password','.telephone','.realname','.repassword').on('focus',function(){
+			$(this).siblings('span').removeClass('right');
+			$(this).siblings('span').removeClass('wrong');
+
+
+		});
+
+
+
+
+		$('.username').on('blur', function () {
+			var usernameVal = $(this).val();
+			if (regex.test(usernameVal)) {
+				$(this).siblings('span').removeClass('wrong');
+				$(this).siblings('span').addClass('right');
+				$(this).siblings('span').html('');
+			} else if(usernameVal.length<4){
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('用户名应为4-10位');
+			}else{
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('用户名不能包含特殊字符');
+			}
+		});
+
+		$('.password').on('blur', function () {
+			var passwordVal = $(this).val();
+			if (pattern.test(passwordVal)) {
+				$(this).siblings('span').removeClass('wrong');
+				$(this).siblings('span').addClass('right');
+				$(this).siblings('span').html('');
+			}else if(passwordVal.length<6){
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('密码为6-12位');
+			} else{
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('密码至少包含 数字和英文');
+			}
+		});
+
+		$('.telephone').on('blur', function () {
+			var telephoneVal = $(this).val();
+			if (tpatten.test(telephoneVal)) {
+				$(this).siblings('span').removeClass('wrong');
+				$(this).siblings('span').addClass('right');
+				$(this).siblings('span').html('');
+			} else{
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('请输入有效的手机号');
+			}
+		});
+
+		$('.realname').on('blur', function () {
+			var rnameVal = $(this).val();
+			if (rname.test(rnameVal)) {
+				$(this).siblings('span').removeClass('wrong');
+				$(this).siblings('span').addClass('right');
+				$(this).siblings('span').html('');
+			} else{
+				$(this).siblings('span').addClass('wrong');
+				$(this).siblings('span').html('请输入真实姓名');
+			}
+		});
+
+	});
+</script>
+
 <div class="container">
 	<section id="content">
-		<form action="/reg/reg" method="post" >
+		<form action="/reg/reg" method="post" onsubmit="return check()" >
 			<h1>注册</h1>
 			<div>
-				<select id="test" name="profession" onchange="show()">
+
+				<select class="my-menu" id="test" name="profession" onchange="show()">
 					<option value="customer">顾客</option>
 					<option value="store">商家</option>
 					<option value="rider">骑手</option>
+
 				</select>
 			</div>
+			<br />
 			<div>
 				<input type="text"  style="display:none" placeholder="饭店名称" required="" id="shopname" name="shopname" value="null"/>
 			</div>
 			<div>
-				<input type="text" placeholder="用户名" required="" id="username" name="username" />
+				<input type="text" placeholder="用户名" required="" id="username" name="username" class="username" maxlength="12" />
+				<br><span></span>
 			</div>
 			<div>
-				<input type="password" placeholder="密码" required="" id="password" name="password" />
+				<input type="password" placeholder="密码" required="" id="password" name="password" class="password" maxlength="12"/>
+				<br><span></span>
 			</div>
 			<div>
-				<input type="text" placeholder="真实姓名" required="" id="realname" name="realname" />
+				<input type="password" placeholder="确认密码" required="" id="repassword" name="repassword" class="repassword" maxlength="12"/>
+				<br><span></span>
 			</div>
 			<div>
-				<input type="text" placeholder="电话号码" required="" id="telephone" name="telephone" />
+				<input type="text" placeholder="真实姓名" required="" id="realname" name="realname" class="realname" maxlength="12" />
+				<br><span></span>
 			</div>
 			<div>
-				<input type="text" placeholder="地址" required="" id="address" name="address" />
+				<input type="text" placeholder="手机号" required="" id="telephone" name="telephone" class="telephone" maxlength="11"/>
+				<br><span></span>
+			</div>
+			<div>
+				<input type="text" placeholder="地址" required="" id="address" name="address" maxlength="36"/>
 			</div>
 
-			 <div class="">
+			<div class="">
 				<span class="help-block u-errormessage" >&nbsp;</span>			</div>
 			<div>
 				<!-- <input type="submit" value="Log in" /> -->
@@ -63,7 +180,7 @@
 				<!-- <a href="#">Register</a> -->
 			</div>
 		</form><!-- form -->
-		 <div class="button">
+		<div class="button">
 			<span class="help-block u-errormessage" >&nbsp;</span>
 			<a href="login.html">登入</a>
 		</div> <!-- button -->
@@ -71,7 +188,9 @@
 </div>
 <!-- container -->
 
-
+<script>
+	$('.my-menu').fancyspinbox();
+</script>
 <br><br><br><br>
 <div style="text-align:center;">
 </div>

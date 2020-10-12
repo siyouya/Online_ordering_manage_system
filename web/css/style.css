@@ -87,7 +87,7 @@ a:hover{ text-decoration: underline; }
 	background: -o-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
 	background: -ms-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
 	background: linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
-    right: 0;
+	right: 0;
 }
 #content h1:before {
 	background: rgb(126,126,126);
@@ -96,7 +96,7 @@ a:hover{ text-decoration: underline; }
 	background: -o-linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
 	background: -ms-linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
 	background: linear-gradient(right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
-    left: 0;
+	left: 0;
 }
 #content:after,
 #content:before {
@@ -208,14 +208,14 @@ a:hover{ text-decoration: underline; }
 	background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
 	background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
 	background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-/* 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 ); */
+	/* 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 ); */
 }
 #content form div a {
 	color: #004a80;
-    float: right;
-    font-size: 12px;
-    margin: 30px 15px 0 0;
-    text-decoration: underline;
+	float: right;
+	font-size: 12px;
+	margin: 30px 15px 0 0;
+	text-decoration: underline;
 }
 .button {
 	background: rgb(247,249,250);
@@ -253,4 +253,160 @@ a:hover{ text-decoration: underline; }
 .button a:hover {
 	background-position: 0 -135px;
 	color: #00aeef;
+}
+.item {
+	width: 240px;
+	height: 32px;
+	margin: 30px auto;
+}
+span {
+	color: #aaa;
+	font-size: 10px;
+
+
+
+}
+
+.right {
+	color: green;
+
+
+}
+
+.wrong {
+	color: red;
+
+}
+
+
+
+.fancy-spinbox {
+	box-sizing: content-box;
+	height: 2rem;
+	padding: 0 1.8rem 0 0;
+	border: 2px solid #55aaff;
+	border-radius: 4px;
+	display: inline-block;
+	position: relative;
+	color: #16425B;
+	background-color: #ffffff;
+	outline: 0;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.fancy-spinbox:focus {
+	background-color: #ffffff;
+}
+.fancy-spinbox .crop {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	height: 2rem;
+	display: inline-block;
+	overflow: hidden;
+}
+.fancy-spinbox ul {
+	cursor: default;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	list-style: none;
+	text-align: left;
+}
+.fancy-spinbox li {
+	width: auto;
+	height: 2rem;
+	line-height: 2rem;
+	margin: 0;
+	padding: 0 0.6rem 0 0.6rem;
+	white-space: nowrap;
+}
+.fancy-spinbox ul.dropdown {
+	position: absolute;
+	top: 2rem;
+	left: -9999px;
+	z-index: 999;
+	border: 2px solid #55aaff;
+	border-radius: 4px;
+	color: #16425B;
+	background-color: #ffffff;
+}
+.fancy-spinbox ul.dropdown:empty {
+	display: none;
+}
+.fancy-spinbox ul.dropdown li {
+	overflow: hidden;
+}
+.fancy-spinbox ul.dropdown li.selected, .fancy-spinbox ul.dropdown li.selected * {
+	color: #ffffff;
+	background-color: #8fd3ff;
+}
+.fancy-spinbox ul.dropdown li:hover, .fancy-spinbox ul.dropdown li:hover * {
+	color: #16425B;
+	background-color: #81C3D7;
+}
+.fancy-spinbox .buttons {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1.8rem;
+}
+.fancy-spinbox button {
+	position: relative;
+	width: 1.8rem;
+	height: 1rem;
+	padding: 0;
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	background-color: transparent;
+	display: block;
+	outline: 0;
+	cursor: default;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.fancy-spinbox button::-moz-focus-inner {
+	border: 0;
+	outline: 0;
+}
+.fancy-spinbox button:active > span.triangle-up, .fancy-spinbox button.toggle-dropdown:active > span.triangle-up {
+	border-bottom-color: #81C3D7;
+}
+.fancy-spinbox button:active > span.triangle-down, .fancy-spinbox button.toggle-dropdown:active > span.triangle-down {
+	border-top-color: #81C3D7;
+}
+.fancy-spinbox button.toggle-dropdown {
+	height: 2rem;
+}
+.fancy-spinbox button.toggle-dropdown > span.triangle-down {
+	position: static;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid #16425B;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0;
+}
+.fancy-spinbox button span {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: block;
+}
+.fancy-spinbox button span.triangle-up {
+	border-bottom: 7px solid #16425B;
+	bottom: 2px;
+	right: 0.6rem;
+}
+.fancy-spinbox button span.triangle-down {
+	border-top: 7px solid #16425B;
+	top: 2px;
+	right: 0.6rem;
 }
