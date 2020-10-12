@@ -24,6 +24,9 @@ public class DologinServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String profession=request.getParameter("profession");
+
+		System.out.println(profession);
+
 		HttpSession session = request.getSession();
 		 if ("customer".equals(profession)) {
 			CustomerDao customerDao=new CustomerDao();

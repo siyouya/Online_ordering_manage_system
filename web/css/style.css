@@ -410,3 +410,18 @@ span {
 	top: 2px;
 	right: 0.6rem;
 }
+#code{
+	width:80px;
+	height:30px;
+	font-size:20px;
+	font-family:Arial;
+	font-style:italic;
+	font-weight:bold;
+	border:0;
+	letter-spacing:2px;
+	color:blue;
+}
+.yzm{
+
+	color:red;
+}

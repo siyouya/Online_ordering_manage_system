@@ -1,6 +1,7 @@
 package com.etc.controller;
 
-import java.io.IOException;
+import com.etc.dao.CustomerDao;
+import com.etc.util.DBUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.etc.dao.CustomerDao;
-import com.etc.util.DBUtils;
+import java.io.IOException;
 
 @WebServlet("/user/user")
 public class CustomerServlet extends HttpServlet {
@@ -50,11 +49,11 @@ public class CustomerServlet extends HttpServlet {
 		System.out.println(result);
 		if (result>0){
 			System.out.println(result);
-			session.setAttribute("msg", "µÇÂ¼³É¹¦");
+			session.setAttribute("msg", "cg");
 			request.getRequestDispatcher("../register.jsp").forward(request, response);
 			} else{
 			System.out.println(result);
-			session.setAttribute("msg", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");
+			session.setAttribute("msg", "cg");
 			//response.sendRedirect("../login.jsp");
 		}
 
@@ -112,10 +111,10 @@ public class CustomerServlet extends HttpServlet {
 		
 		int count  =DBUtils.doUpdate("insert into t_user(username,password,sex,birthday,hobby,city,info)value(?,?,?,?,?,?,?)",username,password,sex,birthday,hobbyStr,city,info );
 		if(count>0){
-			session.setAttribute("msg", "×¢²á³É¹¦");
+			session.setAttribute("msg", "cg");
 			response.sendRedirect("login.jsp");
 		}else{
-			session.setAttribute("msg", "×¢²áÊ§°Ü");
+			session.setAttribute("msg", "cg");
 			response.sendRedirect("reg.jsp");
 		}
 		
@@ -133,10 +132,10 @@ public class CustomerServlet extends HttpServlet {
 		HttpSession  session   = request.getSession();
 		int count  =DBUtils.doUpdate("delete from t_user where userid =?", userid);
 		if(count>0){
-			session.setAttribute("message", "É¾³ý³É¹¦");
+			session.setAttribute("message", "cg");
 			response.sendRedirect("user?op=showUser");
 		}else{
-			session.setAttribute("message", "É¾³ýÊ§°Ü");
+			session.setAttribute("message", "cg");
 			response.sendRedirect("user?op=showUser");
 		}
 		

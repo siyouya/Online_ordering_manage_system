@@ -28,16 +28,17 @@ public class DoRegServlet extends HttpServlet {
 		String telephone=request.getParameter("telephone");
 		String address=request.getParameter("address");
 		String shopname=request.getParameter("shopname");
+
 		HttpSession session = request.getSession();
 		 if ("customer".equals(profession)) {
 			CustomerDao customerDao=new CustomerDao();
 			 int result=customerDao.reg(username,password,realname,telephone,address);
 			 if (result>0){
-				 session.setAttribute("msg", "×¢²á³É¹¦");
+				 session.setAttribute("msg", "cg");
 				 request.getRequestDispatcher("../register.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "×¢²áÊ§°Ü£¬ÇëÖØÐÂ×¢²á");
+				 session.setAttribute("msg", "cg");
 			 }
 		}else if ("store".equals(profession)) {
 
@@ -45,22 +46,22 @@ public class DoRegServlet extends HttpServlet {
 
 			 int result=storeDao.reg(shopname,username,password,realname,telephone,address);
 			 if (result>0){
-				 session.setAttribute("msg", "×¢²á³É¹¦");
+				 session.setAttribute("msg", "cg");
 				 request.getRequestDispatcher("../register.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "×¢²áÊ§°Ü£¬ÇëÖØÐÂ×¢²á");
+				 session.setAttribute("msg", "cg");
 			 }
 
 		}else if ("rider".equals(profession)) {
 			 RiderDao riderDao=new RiderDao();
 			 int result= riderDao.reg(username,password,realname,telephone);
 			 if (result>0){
-				 session.setAttribute("msg", "×¢²á³É¹¦");
+				 session.setAttribute("msg", "cg");
 				 request.getRequestDispatcher("../register.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
-				 session.setAttribute("msg", "×¢²áÊ§°Ü£¬ÇëÖØÐÂ×¢²á");
+				 session.setAttribute("msg", "cg");
 			 }
 		}
 
