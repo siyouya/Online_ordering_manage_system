@@ -22,7 +22,7 @@ public class OrderDao {
 
             list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
                     rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
-                    rs.getDate("acceptdata"),rs.getDate("completedate"),rs.getInt("state")));
+                    rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
 
         }
         return list;
@@ -37,6 +37,11 @@ public class OrderDao {
 
     public int update(int oid, String dlist,  int state) {
         int count  =DBUtils.doUpdate("update  orderinfo set dlist=?,state=? where oid=?; ",dlist,state,oid);
+        return count;
+    }
+    public int quxiao(int oid) {
+        int count  =DBUtils.doUpdate("update  orderinfo set state=0 where oid=?; ",oid);
+        System.out.println("订单已完成");
         return count;
     }
     public int addOrder(int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {

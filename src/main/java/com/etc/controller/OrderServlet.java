@@ -39,6 +39,12 @@ public class OrderServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }else if ("quxiao".equals(op)){
+            try {
+                quxiao(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -67,6 +73,12 @@ public class OrderServlet extends HttpServlet {
         response.sendRedirect("../storeMange/admin-ordertable.jsp");
         //request.getRequestDispatcher().forward(request, response);
 
+    }
+    public void quxiao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
+
+        int did= Integer.parseInt(request.getParameter("oid"));
+        int result=orderDao.quxiao(did);
+        response.sendRedirect("../storeMange/admin-ordertable.jsp");
     }
 
 }
