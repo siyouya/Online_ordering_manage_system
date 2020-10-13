@@ -22,7 +22,7 @@ public class RiderServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		request.setCharacterEncoding("utf-8");
-		int rid= Integer.valueOf((String) session.getAttribute("rid"));
+		int rid=  Integer.parseInt( session.getAttribute("rid").toString());
 		String op = request.getParameter("op");
 		RiderDao riderDao=new RiderDao();
 		 if ("query".equals(op)) {

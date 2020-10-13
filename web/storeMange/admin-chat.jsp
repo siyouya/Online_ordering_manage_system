@@ -1,7 +1,7 @@
 <%@ page import="com.etc.entity.Store" %>
 <%@ page import="java.util.List" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
   String path = request.getContextPath();
   String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -9,16 +9,13 @@
 
 %>
 
-<% request.setCharacterEncoding("utf-8"); %>
-<% response.setCharacterEncoding("utf-8"); %>
-
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>商家后台管理系统</title>
-  <meta name="description" content="这是一个 user 页面">
-  <meta name="keywords" content="user">
+  <title>Amaze后台管理系统模板HTML 404页面 - cssmoban </title>
+  <meta name="description" content="这是一个404页面">
+  <meta name="keywords" content="404">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -27,7 +24,6 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
-  <script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -37,7 +33,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong></strong> <small>后台管理模板</small>
+    <strong>Amaze后台管理模板</strong> <small></small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -69,7 +65,7 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="#" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="admin-user.jsp" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
           <li><a href="admin-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
           <li><a href="admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
           <li><a href="admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
@@ -99,110 +95,30 @@
 
   <!-- content start -->
   <div class="admin-content">
+
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">404</strong> / <small>That’s an error</small></div>
     </div>
 
-    <hr/>
-
     <div class="am-g">
-
-      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="am-g">
-              <div class="am-u-md-4">
-                <img class="am-img-circle am-img-thumbnail" src="http://amui.qiniudn.com/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" alt=""/>
-              </div>
-              <div class="am-u-md-8">
-                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                <form class="am-form">
-                  <div class="am-form-group">
-                    <input type="file" id="user-pic">
-                    <p class="am-form-help">请选择要上传的文件...</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="user-info">
-              <p>等级信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar" style="width: 60%"></div>
-              </div>
-              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
-            </div>
-            <div class="user-info">
-              <p>信用信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
-              </div>
-              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <c:if test="${!empty msg}">
-        <h1>${msg }</h1>
-      </c:if>
-<% List<Store> list= (List<Store>) session.getAttribute("list");
-    for(Store store:list){
-%>
-
-      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal" action="/store" method="get" >
-          <div class="am-form-group">
-            <label  class="am-u-sm-3 am-form-label">商店名称</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="<%=store.getShopname() %>">
-
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label  class="am-u-sm-3 am-form-label">真实姓名</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="<%=store.getRealname() %>">
-
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="<%=store.getTelephone()%>">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label class="am-u-sm-3 am-form-label">地址</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="<%=store.getAddress()%>">
-            </div>
-          </div>
-
-
-          <div class="am-form-group">
-            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-            <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >123</textarea>
-            </div>
-          </div>
-<% }%>
-          <div class="am-form-group">
-            <div class="am-u-sm-9 am-u-sm-push-3">
-              <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->
-              <input type="hidden" class="am-btn am-btn-primary" name="op" value="update" />
-              <input type="submit" class="am-btn am-btn-primary" value="保存修改" />
-            </div>
-          </div>
-        </form>
+      <div class="am-u-sm-12">
+        <h2 class="am-text-center am-text-xxxl am-margin-top-lg">404. Not Found</h2>
+        <p class="am-text-center">没有找到你要的页面</p>
+        <pre class="page-404">
+          .----.
+       _.'__    `.
+   .--($)($$)---/#\
+ .' @          /###\
+ :         ,   #####
+  `-..__.-' _.-\###/
+        `;_:    `"'
+      .'"""""`.
+     /,  ya ,\\
+    //  404!  \\
+    `-._______.-'
+    ___`. | .'___
+   (______|______)
+        </pre>
       </div>
     </div>
   </div>
