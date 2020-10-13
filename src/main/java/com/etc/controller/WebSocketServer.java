@@ -51,7 +51,7 @@ public class WebSocketServer {
     public void receiveMsg(@PathParam("roomName") String roomName,@PathParam("username") String username,
                            String msg, Session session) throws Exception {
         // 此处应该有html过滤
-        msg = username + ":" + msg;
+        //msg = username + ":" + msg;
         System.out.println(msg);
         // 接收到信息后进行广播
         broadcast(roomName, msg);

@@ -69,13 +69,16 @@
     };
 
     function initWebSocket() {
-        var roomName = document.getElementById("input_roomName").value;
+        // var roomName = document.getElementById("input_roomName").value;
+        //订单号作为房间号测试先用1
+        var roomName=1;
         // 房间名不能为空
         if (roomName == null || roomName == "") {
             alert("请输入房间名");
             return;
         }
-        var username = document.getElementById("username").value.trim();
+        //var username = document.getElementById("username").value.trim();
+        var username='小恒恒';//有3个骑手顾客商家先测试1
         if (username == "" || username==null) {
             alert("用户名不能为空")
             return;
@@ -95,7 +98,6 @@
             };
 
             webSocket.onmessage = function (evt) {
-                //保存之前的记录在打印出来
                 var msg_board = document.getElementsByClassName("msg_board")[0];
                 var received_msg = evt.data;
                 var old_msg = msg_board.innerHTML;
