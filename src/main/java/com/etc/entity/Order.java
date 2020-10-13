@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Order {
     private int oid;
-    private int uid;
+    private int cid;
     private int sid;
     private int rid;
     private String dlist;
@@ -20,12 +20,12 @@ public class Order {
         this.oid = oid;
     }
 
-    public int getUid() {
-        return uid;
+    public int getCid() {
+        return cid;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     public int getSid() {
@@ -79,9 +79,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(int oid, int uid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
+    public Order(int oid, int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
         this.oid = oid;
-        this.uid = uid;
+        this.cid = cid;
         this.sid = sid;
         this.rid = rid;
         this.dlist = dlist;

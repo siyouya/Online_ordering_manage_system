@@ -39,8 +39,8 @@ public class OrderDao {
         int count  =DBUtils.doUpdate("update  order set dlist=?,state=? where oid=?; ",dlist,state,oid);
         return count;
     }
-    public int addOrder(int uid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
-        int count  =DBUtils.doUpdate("insert into  order (uid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ", sid,rid,dlist,acceptdate,completedate,state);
+    public int addOrder(int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
+        int count  =DBUtils.doUpdate("insert into  order (cid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ",cid,sid,rid,dlist,acceptdate,completedate,state);
         return count;
     }
 
