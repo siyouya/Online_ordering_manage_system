@@ -9,8 +9,8 @@
         <module name="Online_ordering_manage_system" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Online_ordering_manage_system" target="1.5" />
+    <bytecodeTargetLevel target="8">
+      <module name="Online_ordering_manage_system" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
