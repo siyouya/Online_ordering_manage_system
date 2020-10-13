@@ -15,9 +15,9 @@ public class OrderDao {
         ResultSet rs=null;
         ArrayList<Order> list=new ArrayList<Order>();
         if ("customer".equals(way)){
-        rs= DBUtils.doQuery("select * from order where sid=?",sid);
+        rs= DBUtils.doQuery("select * from orderinfo where cid=?",sid);
         }else {
-            rs = DBUtils.doQuery("select * from order where cid=?",sid);}
+            rs = DBUtils.doQuery("select * from orderinfo where sid=?",sid);}
         while(rs.next()){
 
             list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
@@ -30,17 +30,17 @@ public class OrderDao {
 
     public int delorder(String did){
         int id=Integer.parseInt(did);
-        int count  = DBUtils.doUpdate("delete from order where oid =?",id);
+        int count  = DBUtils.doUpdate("delete from orderinfo where oid =?",id);
         return count;
     }
 
 
     public int update(int oid, String dlist,  int state) {
-        int count  =DBUtils.doUpdate("update  order set dlist=?,state=? where oid=?; ",dlist,state,oid);
+        int count  =DBUtils.doUpdate("update  orderinfo set dlist=?,state=? where oid=?; ",dlist,state,oid);
         return count;
     }
     public int addOrder(int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
-        int count  =DBUtils.doUpdate("insert into  order (cid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ",cid,sid,rid,dlist,acceptdate,completedate,state);
+        int count  =DBUtils.doUpdate("insert into  orderinfo (cid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ",cid,sid,rid,dlist,acceptdate,completedate,state);
         return count;
     }
 
