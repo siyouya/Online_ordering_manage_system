@@ -36,7 +36,7 @@ public class DologinServlet extends HttpServlet {
 			 int result=customerDao.checklogin(username,password);
 			 if (result>0){
 				 session.setAttribute("msg", "成功");
-				 ArrayList<Store> list=new ArrayList<>();
+				 ArrayList<Store> list=new ArrayList<Store>();
 				 list= (ArrayList<Store>) dao.query();
 				 session.setAttribute("stores",list);
 				 request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);

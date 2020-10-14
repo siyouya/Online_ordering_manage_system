@@ -22,6 +22,7 @@ public class DishDao {
                     rs.getInt("price"),rs.getInt("sid")));
 
         }
+        DBUtils.free(rs);
         return list;
     }
 

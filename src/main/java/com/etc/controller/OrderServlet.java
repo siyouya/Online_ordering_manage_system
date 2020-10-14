@@ -1,11 +1,8 @@
 package com.etc.controller;
 
-import com.etc.dao.CustomerDao;
 import com.etc.dao.OrderDao;
-import com.etc.dao.StoreDao;
-import com.etc.entity.Customer;
 import com.etc.entity.Order;
-import com.etc.entity.Store;
+import com.etc.entity.OrderRider;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
@@ -36,6 +32,7 @@ public class OrderServlet extends HttpServlet {
                 showorderByshop(request,response);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+
             }
         }else if ("selbycustomer".equals(op)){
             try {
@@ -49,13 +46,36 @@ public class OrderServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+
         }else if("recorder".equals(op)){
+            //显示所有可以接的单子
             try {
                 recorder(request,response);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
 
+        }else if("crecover".equals(op)){
+            //更改订单状态添加骑手
+            try {
+                crecover(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else if("run_order".equals(op)){
+            //显示自己的单子
+            try {
+                showbyrider(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else if("com_order".equals(op)){
+            //修改状态
+            try {
+                modifystate(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -93,27 +113,50 @@ public class OrderServlet extends HttpServlet {
 
     public void recorder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
-        ArrayList<Order> list=new ArrayList<Order>();
-        StoreDao storeDao=new StoreDao();
-        CustomerDao customerDao=new CustomerDao();
-        //查询空骑手编号的订单
-        list= (ArrayList<Order>) orderDao.queryisnullrid();
-        //根据sid查询店家名称商店地址
-        List<Store> slist=new ArrayList<>();
-        List<Customer> clist=new ArrayList<>();
-        for(Order order:list){
-            slist= storeDao.query(order.getSid());
+        ArrayList<OrderRider> list = (ArrayList<OrderRider>) orderDao.queryisnullrid();
 
-        }
-        //cid查询用户地址
-        for(Order order:list){
-            clist=customerDao.querynamebyid(order.getCid());
-        }
-        session.setAttribute("clist",clist);
-        session.setAttribute("slist",slist);
         session.setAttribute("list",list);
         System.out.println("查询成功");
         response.sendRedirect("../riderMange/rider-table.jsp");
+        //request.getRequestDispatcher().forward(request, response);
+
+    }
+
+
+    public void crecover(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session   = request.getSession();
+        OrderDao orderDao=new OrderDao();
+        int state=1;
+        int rid=Integer.valueOf(session.getAttribute("rid").toString());
+        System.out.println(rid);
+        String oid=request.getParameter("roid");
+        System.out.println(oid);
+        orderDao.rupdate(oid,rid,state);
+        System.out.println("查询成功");
+        response.sendRedirect("order?op=recorder");
+
+    }
+
+    public void showbyrider(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session   = request.getSession();
+
+        //查询骑手自己的订单
+        int rid=Integer.valueOf(session.getAttribute("rid").toString());
+        ArrayList<OrderRider> list = (ArrayList<OrderRider>) orderDao.showbyrider(rid);
+        session.setAttribute("list",list);
+        System.out.println("查询成功");
+        response.sendRedirect("../riderMange/rider-run_order.jsp");
+        //request.getRequestDispatcher().forward(request, response);
+
+    }
+    public void modifystate(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+
+        //根据订单oid修改订单state
+        int oid= Integer.parseInt(request.getParameter("roid"));
+
+        int result=orderDao.modify_state(oid);
+
+        response.sendRedirect("order?op=run_order");
         //request.getRequestDispatcher().forward(request, response);
 
     }

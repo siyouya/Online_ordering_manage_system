@@ -1,6 +1,9 @@
 package com.etc.dao;
 
+import com.etc.entity.Customer;
 import com.etc.entity.Order;
+import com.etc.entity.OrderRider;
+import com.etc.entity.Store;
 import com.etc.util.DBUtils;
 
 import java.sql.ResultSet;
@@ -24,6 +27,7 @@ public class OrderDao {
                     rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
 
         }
+        DBUtils.free(rs);
         return list;
     }
 
@@ -57,19 +61,57 @@ public class OrderDao {
                     rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
                     rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
         }
+        DBUtils.free(rs);
         return list;
     }
 
-    public List<Order> queryisnullrid() throws SQLException {
+    public List<OrderRider> queryisnullrid() throws SQLException {
         ResultSet rs=null;
-        ArrayList<Order> list=new ArrayList<Order>();
-        rs= DBUtils.doQuery("select * from orderinfo where rid is null");
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+        rs= DBUtils.doQuery("select cuser.address,suser.address as shopaddress,suser.shopname,cuser.telephone,orderinfo.oid from cuser,suser,orderinfo where orderinfo.cid=cuser.cid and  orderinfo.sid=suser.sid  and orderinfo.rid is null");
         while(rs.next()){
-            list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
-                    rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
-                    rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
+            int oid=rs.getInt("oid");
+            Customer customer=new Customer();
+            customer.setAddress(rs.getString("address"));
+            customer.setTelepone(rs.getString("telephone"));
+            Store store=new Store();
+            store.setShopname(rs.getString("shopname"));
+            store.setAddress(rs.getString("shopaddress"));
+            list.add(new OrderRider(oid, customer,store));
         }
+        DBUtils.free(rs);
         return list;
     }
+    //添加骑手
+    public int rupdate(String oid, int rid,int state) {
+        int oid1=Integer.parseInt(oid);
+        int count  =DBUtils.doUpdate("update  orderinfo set rid=?,state=? where oid=?; ",rid,state,oid1);
+        return count;
+    }
+    public List<OrderRider> showbyrider(int rid) throws SQLException {
+        ResultSet rs=null;
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+        rs= DBUtils.doQuery("select cuser.address,suser.address as shopaddress,suser.shopname,cuser.telephone,orderinfo.oid from cuser,suser,orderinfo where orderinfo.cid=cuser.cid and  orderinfo.sid=suser.sid  and orderinfo.rid = ? and orderinfo.state=1",rid);
+        while(rs.next()){
+            int oid=rs.getInt("oid");
+            Customer customer=new Customer();
+            customer.setAddress(rs.getString("address"));
+            customer.setTelepone(rs.getString("telephone"));
+            Store store=new Store();
+            store.setShopname(rs.getString("shopname"));
+            store.setAddress(rs.getString("shopaddress"));
+            list.add(new OrderRider(oid, customer,store));
+        }
+        DBUtils.free(rs);
+        return list;
+    }
+
+    //修改订单状态 1代表未完成 2代表完成 默认为1
+    public int modify_state(int oid) {
+        int count  =DBUtils.doUpdate("update  orderinfo set state=2 where oid=?; ",oid);
+        return count;
+    }
+
+
 
 }
