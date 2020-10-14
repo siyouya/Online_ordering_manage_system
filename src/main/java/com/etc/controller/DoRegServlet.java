@@ -30,39 +30,39 @@ public class DoRegServlet extends HttpServlet {
 		String shopname=request.getParameter("shopname");
 
 		HttpSession session = request.getSession();
-		 if ("customer".equals(profession)) {
+		if ("customer".equals(profession)) {
 			CustomerDao customerDao=new CustomerDao();
-			 int result=customerDao.reg(username,password,realname,telephone,address);
-			 if (result>0){
-				 session.setAttribute("msg", "cg");
-				 request.getRequestDispatcher("../register.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "cg");
-			 }
+			int result=customerDao.reg(username,password,realname,telephone,address);
+			if (result>0){
+				session.setAttribute("msg", "注册成功");
+				response.sendRedirect("../login.jsp");
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "cg");
+			}
 		}else if ("store".equals(profession)) {
 
-			 StoreDao storeDao=new StoreDao();
+			StoreDao storeDao=new StoreDao();
 
-			 int result=storeDao.reg(shopname,username,password,realname,telephone,address);
-			 if (result>0){
-				 session.setAttribute("msg", "cg");
-				 request.getRequestDispatcher("../register.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "cg");
-			 }
+			int result=storeDao.reg(shopname,username,password,realname,telephone,address);
+			if (result>0){
+				session.setAttribute("msg", "cg");
+				request.getRequestDispatcher("../register.jsp").forward(request, response);
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "cg");
+			}
 
 		}else if ("rider".equals(profession)) {
-			 RiderDao riderDao=new RiderDao();
-			 int result= riderDao.reg(username,password,realname,telephone);
-			 if (result>0){
-				 session.setAttribute("msg", "cg");
-				 request.getRequestDispatcher("../register.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "cg");
-			 }
+			RiderDao riderDao=new RiderDao();
+			int result= riderDao.reg(username,password,realname,telephone);
+			if (result>0){
+				session.setAttribute("msg", "cg");
+				request.getRequestDispatcher("../register.jsp").forward(request, response);
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "cg");
+			}
 		}
 
 	}

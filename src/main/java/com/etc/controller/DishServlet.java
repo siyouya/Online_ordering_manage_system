@@ -165,8 +165,9 @@ public class DishServlet extends HttpServlet {
 
     public void addish(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
         HttpSession  session   = request.getSession();
-
+        request.setCharacterEncoding("utf-8");
         String dishname=request.getParameter("dishname");
+        System.out.println(dishname);
         String number=request.getParameter("number");
         String rmaterial=request.getParameter("rmaterial");
         String price=request.getParameter("price");
