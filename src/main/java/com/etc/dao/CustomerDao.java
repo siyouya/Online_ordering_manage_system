@@ -24,6 +24,7 @@ public class CustomerDao {
                     rs.getString("telephone"),rs.getString("address"),rs.getInt("state")));
 
         }
+        DBUtils.free(rs);
         return list;
     }
 
@@ -58,6 +59,7 @@ public class CustomerDao {
                     rs.getString("telephone"),rs.getString("address"),rs.getInt("state")));
 
         }
+        DBUtils.free(rs);
         return list;
     }
 

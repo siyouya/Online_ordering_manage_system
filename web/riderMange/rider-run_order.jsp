@@ -1,7 +1,5 @@
-<%@ page import="com.etc.entity.Store" %>
+
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.etc.entity.Order" %>
-<%@ page import="com.etc.entity.Customer" %>
 <%@ page import="com.etc.entity.OrderRider" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -65,8 +63,8 @@
 <script type="text/javascript">
   function recorder(id) {
 
-    if (confirm("确认接单")) {
-      document.getElementById('op').value = "crecover";
+    if (confirm("确认完成订单")) {
+      document.getElementById('op').value = "com_order";
       document.getElementById('roid').value = id;
       var form1 = document.getElementById('oid');
 
@@ -195,8 +193,8 @@
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
 
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-copy"></span>接单</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-copy"></span>联系</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-trash-o"></span>完成</button>
+
                   </div>
 
                 </div>
