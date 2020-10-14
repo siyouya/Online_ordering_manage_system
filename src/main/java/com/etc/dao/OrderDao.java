@@ -1,6 +1,5 @@
 package com.etc.dao;
 
-import com.etc.entity.Disher;
 import com.etc.entity.Order;
 import com.etc.util.DBUtils;
 
@@ -47,6 +46,30 @@ public class OrderDao {
     public int addOrder(int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {
         int count  =DBUtils.doUpdate("insert into  orderinfo (cid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ",cid,sid,rid,dlist,acceptdate,completedate,state);
         return count;
+    }
+
+    public List<Order> querybycid(int cid) throws SQLException {
+        ResultSet rs=null;
+        ArrayList<Order> list=new ArrayList<Order>();
+        rs= DBUtils.doQuery("select * from orderinfo where cid=?",cid);
+        while(rs.next()){
+            list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
+                    rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
+                    rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
+        }
+        return list;
+    }
+
+    public List<Order> queryisnullrid() throws SQLException {
+        ResultSet rs=null;
+        ArrayList<Order> list=new ArrayList<Order>();
+        rs= DBUtils.doQuery("select * from orderinfo where rid is null");
+        while(rs.next()){
+            list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
+                    rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
+                    rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
+        }
+        return list;
     }
 
 }
