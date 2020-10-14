@@ -27,6 +27,8 @@ http://www.templatemo.com/free-website-templates/417-grill
   <link rel="stylesheet" href="css/templatemo_misc.css">
   <link rel="stylesheet" href="css/flexslider.css">
   <link rel="stylesheet" href="css/testimonails-slider.css">
+  <link rel="stylesheet" href="css/classify.css.css">
+
 
   <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
@@ -40,7 +42,8 @@ http://www.templatemo.com/free-website-templates/417-grill
     total+=Number(price);
     document.getElementById('shopcount').innerHTML=count+"件";
     document.getElementById('total').innerHTML="￥"+total;
-    console.log(tag);
+
+
   }
 </script>
 <body>
@@ -61,7 +64,28 @@ http://www.templatemo.com/free-website-templates/417-grill
         <div class="col-md-6">
           <div class="cart-info">
             <i class="fa fa-shopping-cart"></i>
-            (<a href="#" id="shopcount">0</a>) 在你的购物车 (<a href="#" id="total">0</a>)
+            (<a  id="shopcount">0</a>) 在你的购物车 (<a  id="total">0</a>)
+            <div class="sub">
+              <ul class="list-unstyled right-con">
+                <li class="list-unstyled">
+
+                  <div class="menu-txt">
+                    <h4 data-icon="00">珍珠奶茶</h4>
+
+                    <p class="list2">
+                      <b>￥</b><b>2.00</b>
+                    </p>
+                    <div class="btn">
+                      <button class="minus">-</button>
+                      <i>0</i>
+                      <button class="add">+</button>
+                      <i class="price">2.00</i>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -75,16 +99,16 @@ http://www.templatemo.com/free-website-templates/417-grill
             <a href="#"><img src="images/logo.png" title="Grill Template" alt="Grill Website Template" ></a>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="main-menu">
-            <ul>
-              <li><a href="index.jsp">Home</a></li>
-              <li><a href="about-us.jsp">关于</a></li>
-              <li><a href="products.jsp">菜单</a></li>
-              <li><a href="contact-us.jsp">联系我们</a></li>
-            </ul>
-          </div>
-        </div>
+<%--        <div class="col-md-6">--%>
+<%--          <div class="main-menu">--%>
+<%--            <ul>--%>
+<%--              <li><a href="index.jsp">Home</a></li>--%>
+<%--              <li><a href="about-us.jsp">关于</a></li>--%>
+<%--              <li><a href="products.jsp">菜单</a></li>--%>
+<%--              <li><a href="contact-us.jsp">联系我们</a></li>--%>
+<%--            </ul>--%>
+<%--          </div>--%>
+<%--        </div>--%>
         <div class="col-md-3">
           <div class="search-box">
             <form name="search_form" method="get" class="search_form">
