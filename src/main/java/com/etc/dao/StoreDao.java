@@ -55,6 +55,32 @@ public class StoreDao {
         }
         return list;
     }
+    public List<Store> query(){
+        ResultSet rs = DBUtils.doQuery("select * from suser ");
+
+        List<Store> list   = new ArrayList<Store>();
+        try {
+            while (rs.next()) {
+                list.add(new Store(
+                                rs.getInt("sid"),
+                                rs.getString("shopname"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("realname"),
+                                rs.getString("telephone"),
+                                rs.getString("address"),
+                                rs.getString("intro"),
+                                rs.getInt("state")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            DBUtils.free(rs);
+        }
+        return list;
+    }
 
     public int update(String shopname,String realname,String telephone,String address, String intro,int sid){
         int count  =DBUtils.doUpdate("update  suser set shopname=?,realname=?,telephone=?,address=?,intro=? where sid=?; ",shopname,realname,telephone,address,intro,sid);

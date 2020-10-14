@@ -3,6 +3,7 @@ package com.etc.controller;
 import com.etc.dao.CustomerDao;
 import com.etc.dao.RiderDao;
 import com.etc.dao.StoreDao;
+import com.etc.entity.Store;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/login/login")
 public class DologinServlet extends HttpServlet {
@@ -30,10 +32,14 @@ public class DologinServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		 if ("customer".equals(profession)) {
 			CustomerDao customerDao=new CustomerDao();
+			StoreDao dao=new StoreDao();
 			 int result=customerDao.checklogin(username,password);
 			 if (result>0){
 				 session.setAttribute("msg", "成功");
-				 request.getRequestDispatcher("../customerMange/").forward(request, response);
+				 ArrayList<Store> list=new ArrayList<>();
+				 list= (ArrayList<Store>) dao.query();
+				 session.setAttribute("stores",list);
+				 request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
 				 session.setAttribute("msg", "");

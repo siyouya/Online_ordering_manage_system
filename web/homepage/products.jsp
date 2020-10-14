@@ -1,4 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
 
+<%@ page import="com.etc.entity.Disher" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -124,210 +126,32 @@ http://www.templatemo.com/free-website-templates/417-grill
       </div>
     </div>
     <div class="row" id="Container">
-      <div class="col-md-3 col-sm-6 mix portfolio-item Pizza">
+<%--      产品开始--%>
+      <%
+        ArrayList<Disher> list= (ArrayList) session.getAttribute("list");
+        for(Disher dish:list){
+      %>
+      <div class="col-md-3 col-sm-6 mix portfolio-item ">
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
             <img src="images/product1.jpg" alt="" />
             <div class="hover">
               <div class="hover-iner">
                 <a class="fancybox" href="images/product1_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pizza</span>
+                <span><%=dish.getDishname()%></span>
               </div>
             </div>
           </div>
           <div class="label-text">
-            <h3><a href="single-post.html">Vege Pizza</a></h3>
-            <span class="text-category">$16.00</span>
+            <h3><a href="single-post.html"><%=dish.getDishname()%></a></h3>
+            <span class="text-category">￥<%=dish.getPrice()%></span>
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item ginger">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product2.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product2_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Ginger</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Ginger Tea</a></h3>
-            <span class="text-category">$24.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item pizza">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product3.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product3_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pizza</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Fresh Salad</a></h3>
-            <span class="text-category">$12.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item pasta">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product4.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product4_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pasta</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Healthy Herbal Tea</a></h3>
-            <span class="text-category">$8.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item drink">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product5.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product5_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Drink</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Fruit Salad</a></h3>
-            <span class="text-category">$12.50</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item hamburger">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product6.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product6_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Hamburger</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Spicy Hamburger</a></h3>
-            <span class="text-category">$7.50</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item pizza">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product7.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product7_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pizza</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Chocolate Cake</a></h3>
-            <span class="text-category">$16.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item pasta">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product8.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product8_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pasta</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Berry Taste</a></h3>
-            <span class="text-category">$15.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item hamburger">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product3.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product3_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Hamburger</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Onion Grilled</a></h3>
-            <span class="text-category">$16.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item drink">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product2.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product2_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Drink</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Another Ginger</a></h3>
-            <span class="text-category">$18.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item ginger">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product1.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product1_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Ginger</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Mocha Coffee</a></h3>
-            <span class="text-category">$16.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 mix portfolio-item pasta">
-        <div class="portfolio-wrapper">
-          <div class="portfolio-thumb">
-            <img src="images/product6.jpg" alt="" />
-            <div class="hover">
-              <div class="hover-iner">
-                <a class="fancybox" href="images/product6_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                <span>Pasta</span>
-              </div>
-            </div>
-          </div>
-          <div class="label-text">
-            <h3><a href="single-post.html">Dessert Time</a></h3>
-            <span class="text-category">$16.00</span>
-          </div>
-        </div>
-      </div>
+
+  <%--      产品结尾--%>
+  <%
+    }%>
     </div>
     <div class="pagination">
       <div class="row">

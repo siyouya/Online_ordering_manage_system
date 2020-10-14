@@ -64,6 +64,12 @@ public class DishServlet extends HttpServlet {
                 throwables.printStackTrace();
             }
 
+        }else if ("begindish".equals(op)){
+            try {
+                beginDish(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -78,6 +84,20 @@ public class DishServlet extends HttpServlet {
         session.setAttribute("list", list);
         System.out.println("查询成功");
         response.sendRedirect("../storeMange/admin-table.jsp");
+        //request.getRequestDispatcher().forward(request, response);
+
+    }
+    public void beginDish(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session   = request.getSession();
+
+        int sid=Integer.valueOf(request.getParameter("sid"));
+        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid);
+
+
+
+        session.setAttribute("list", list);
+        System.out.println("查询成功");
+        response.sendRedirect("../homepage/products.jsp");
         //request.getRequestDispatcher().forward(request, response);
 
     }
