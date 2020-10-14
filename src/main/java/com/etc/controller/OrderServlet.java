@@ -1,5 +1,6 @@
 package com.etc.controller;
 
+import com.etc.dao.DishDao;
 import com.etc.dao.OrderDao;
 import com.etc.entity.Order;
 import com.etc.entity.OrderRider;
@@ -18,6 +19,7 @@ import java.util.Date;
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
     OrderDao orderDao=new OrderDao();
+    DishDao dishDao=new DishDao();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
@@ -93,6 +95,14 @@ public class OrderServlet extends HttpServlet {
         int cid=Integer.valueOf(session.getAttribute("cid").toString());
         Date date = new Date();
         orderDao.addOrder(cid,sid,tag,date);
+        String[] strs = tag.split(",");
+        for (int i = 0; i < strs.length; i++) {
+            try {
+                dishDao.sellone(strs[i]);
+            } catch (Exception e) {
+            }
+
+        }
 response.sendRedirect("../homepage/index.jsp");
 
     }

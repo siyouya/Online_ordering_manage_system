@@ -39,7 +39,7 @@ public class DologinServlet extends HttpServlet {
 				 ArrayList<Store> list=new ArrayList<Store>();
 				 list= (ArrayList<Store>) dao.query();
 				 session.setAttribute("stores",list);
-				 session.setAttribute("cid",result);
+				 session.setAttribute("cid",result );
 				 request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);
 			 } else{
 				 System.out.println(result);
