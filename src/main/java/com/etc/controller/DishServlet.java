@@ -30,6 +30,7 @@ public class DishServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
 
         String op = request.getParameter("op");
+
         if ("select".equals(op)) {
             try {
                 showDish(request,response);
@@ -91,6 +92,7 @@ public class DishServlet extends HttpServlet {
         HttpSession session   = request.getSession();
 
         int sid=Integer.valueOf(request.getParameter("sid"));
+        session.setAttribute("sid",sid);
         ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid);
 
 

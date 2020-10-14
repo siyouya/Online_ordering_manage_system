@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
@@ -76,9 +77,26 @@ public class OrderServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }else if("addorder".equals(op)){
+            //修改状态
+
+                addorder(request,response);
+
         }
 
     }
+
+    private void addorder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session   = request.getSession();
+        String tag=request.getParameter("tag");
+        int sid=Integer.valueOf(session.getAttribute("sid").toString());
+        int cid=Integer.valueOf(session.getAttribute("cid").toString());
+        Date date = new Date();
+        orderDao.addOrder(cid,sid,tag,date);
+response.sendRedirect("../homepage/index.jsp");
+
+    }
+
     public void showorderByshop(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
         ArrayList<Order> list=new ArrayList<Order>();

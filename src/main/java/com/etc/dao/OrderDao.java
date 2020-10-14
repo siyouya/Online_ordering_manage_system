@@ -51,6 +51,10 @@ public class OrderDao {
         int count  =DBUtils.doUpdate("insert into  orderinfo (cid,sid,rid,dlist,acceptdate,completedate,state) values (?,?,?,?,?,?,?); ",cid,sid,rid,dlist,acceptdate,completedate,state);
         return count;
     }
+    public int addOrder(int cid, int sid, String dlist, Date acceptdate) {
+        int count  =DBUtils.doUpdate("insert into  orderinfo (cid,sid,dlist,acceptdate,state) values (?,?,?,?,1); ",cid,sid,dlist,acceptdate);
+        return count;
+    }
 
     public List<Order> querybycid(int cid) throws SQLException {
         ResultSet rs=null;
