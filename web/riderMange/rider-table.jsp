@@ -4,6 +4,7 @@
 <%@ page import="jdk.nashorn.internal.ir.RuntimeNode" %>
 <%@ page import="com.etc.entity.Disher" %>
 <%@ page import="com.etc.entity.Order" %>
+<%@ page import="com.etc.entity.Customer" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -198,7 +199,13 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
             <tr>
-              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">商店名</th><th class="table-type">商店地址</th><th class="table-author">用户地址</th><th class="table-date">原料</th><th class="table-set">操作</th>
+              <th class="table-check">
+              <th class="table-id">订单编号</th>
+              <th class="table-title">商家店名</th>
+              <th class="table-title">商家地址</th>
+              <th class="table-text">用户地址</th>
+              <th class="table-date">用户电话</th>
+              <th class="table-set">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -206,10 +213,22 @@
               ArrayList<Order> list= (ArrayList) session.getAttribute("list");
               for(Order order:list){
             %>
-            <tr id="tr<%=order.getOid()%>">
-              <td><input type="checkbox" class="checkb" value="<%=order.getCid()%>"/></td>
-              <td><%=order.getSid()%></td>
-              <td><%=order.getRid()%></td>
+            <tr id="tr<%=order.getOid()%>"> <%}%>
+              <%
+                ArrayList<Store> slist= (ArrayList) session.getAttribute("slist");
+                for(Store store:slist){
+              %>
+
+              <td><input type="checkbox" class="checkb" value="<%=store.getShopname()%>"/></td>
+              <td><%=store.getAddress()%></td>
+              <%}%>
+              <%
+                ArrayList<Customer> clist= (ArrayList) session.getAttribute("clist");
+                for(Customer customer:clist){
+              %>
+              <td><%=customer.getAddress()%></td>
+              <td><%=customer.getTelepone()%></td>
+              <%}%>
 
               <td>
                 <div class="am-btn-toolbar">
@@ -221,8 +240,7 @@
                 </div>
               </td>
             </tr>
-            <%
-              }%>
+
 
             </tbody>
           </table>

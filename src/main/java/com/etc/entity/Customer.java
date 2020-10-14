@@ -6,6 +6,7 @@ public class Customer {
     private String password;
     private String realname;
     private String telepone;
+    private String address;
     private int    state;
 
     public int getCid() {
@@ -48,6 +49,14 @@ public class Customer {
         this.telepone = telepone;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public int getState() {
         return state;
     }
@@ -55,17 +64,19 @@ public class Customer {
     public void setState(int state) {
         this.state = state;
     }
+
     public Customer() {
         super();
     }
 
-    public Customer(int cid, String username, String password, String realname, String telepone, int state) {
+    public Customer(int cid, String username, String password, String realname, String telepone, String address, int state) {
         super();
         this.cid = cid;
         this.username = username;
         this.password = password;
         this.realname = realname;
         this.telepone = telepone;
+        this.address = address;
         this.state = state;
     }
 }

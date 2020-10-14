@@ -196,14 +196,7 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
             <tr>
-              <th class="table-id">订单编号</th>
-              <th class="table-title">商家店名</th>
-              <th class="table-title">商家地址</th>
-              <th class="table-text">用户地址</th>
-              <th class="table-date">接单日期</th>
-              <th class="table-date">完成日期</th>
-              <th class="table-date">状态</th>
-              <th class="table-set">操作</th>
+              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">菜名</th><th class="table-type">剩余</th><th class="table-author">价格</th><th class="table-date">原料</th><th class="table-set">操作</th>
             </tr>
             </thead>
             <tbody>
