@@ -1,7 +1,11 @@
 package com.etc.controller;
 
+import com.etc.dao.CustomerDao;
 import com.etc.dao.OrderDao;
+import com.etc.dao.StoreDao;
+import com.etc.entity.Customer;
 import com.etc.entity.Order;
+import com.etc.entity.Store;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
@@ -89,10 +94,24 @@ public class OrderServlet extends HttpServlet {
     public void recorder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
         ArrayList<Order> list=new ArrayList<Order>();
-
+        StoreDao storeDao=new StoreDao();
+        CustomerDao customerDao=new CustomerDao();
+        //查询空骑手编号的订单
         list= (ArrayList<Order>) orderDao.queryisnullrid();
+        //根据sid查询店家名称商店地址
+        List<Store> slist=new ArrayList<>();
+        List<Customer> clist=new ArrayList<>();
+        for(Order order:list){
+            slist= storeDao.query(order.getSid());
 
-        session.setAttribute("list", list);
+        }
+        //cid查询用户地址
+        for(Order order:list){
+            clist=customerDao.querynamebyid(order.getCid());
+        }
+        session.setAttribute("clist",clist);
+        session.setAttribute("slist",slist);
+        session.setAttribute("list",list);
         System.out.println("查询成功");
         response.sendRedirect("../riderMange/rider-table.jsp");
         //request.getRequestDispatcher().forward(request, response);

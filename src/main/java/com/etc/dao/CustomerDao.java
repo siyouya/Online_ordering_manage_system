@@ -21,7 +21,7 @@ public class CustomerDao {
 
             list.add(new Customer(rs.getInt("cid"),rs.getString("username"),
                     rs.getString("password"),rs.getString("realname"),
-                    rs.getString("telephone"),rs.getInt("state")));
+                    rs.getString("telephone"),rs.getString("address"),rs.getInt("state")));
 
         }
         return list;
@@ -55,7 +55,7 @@ public class CustomerDao {
 
             list.add(new Customer(rs.getInt("cid"),rs.getString("username"),
                     rs.getString("password"),rs.getString("realname"),
-                    rs.getString("telephone"),rs.getInt("state")));
+                    rs.getString("telephone"),rs.getString("address"),rs.getInt("state")));
 
         }
         return list;
