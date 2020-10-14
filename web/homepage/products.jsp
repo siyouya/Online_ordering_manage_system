@@ -30,6 +30,19 @@ http://www.templatemo.com/free-website-templates/417-grill
 
   <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
+<script type="text/javascript">
+  var tag="";
+  var count=0;
+  var total=0;
+  function adddish(name,price){
+    tag+=name+",";
+    count++;
+    total+=Number(price);
+    document.getElementById('shopcount').innerHTML=count+"件";
+    document.getElementById('total').innerHTML="￥"+total;
+    console.log(tag);
+  }
+</script>
 <body>
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -48,7 +61,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         <div class="col-md-6">
           <div class="cart-info">
             <i class="fa fa-shopping-cart"></i>
-            (<a href="#">5 件</a>) 在你的购物车 (<a href="#">$45.80</a>)
+            (<a href="#" id="shopcount">0</a>) 在你的购物车 (<a href="#" id="total">0</a>)
           </div>
         </div>
       </div>
@@ -134,10 +147,10 @@ http://www.templatemo.com/free-website-templates/417-grill
       <div class="col-md-3 col-sm-6 mix portfolio-item ">
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
-            <img src="images/product1.jpg" alt="" />
+            <img src="images/product<%=dish.getDid()%>.jpg" alt="" />
             <div class="hover">
               <div class="hover-iner">
-                <a class="fancybox" href="images/product1_big.jpg"><img src="images/open-icon.png" alt="" /></a>
+                <a  onclick="adddish('<%=dish.getDishname()%>','<%=dish.getPrice()%>')"><img src="images/open-icon.png" alt="" /></a>
                 <span><%=dish.getDishname()%></span>
               </div>
             </div>
