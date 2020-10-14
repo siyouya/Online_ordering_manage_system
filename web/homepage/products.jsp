@@ -42,6 +42,7 @@ http://www.templatemo.com/free-website-templates/417-grill
     total+=Number(price);
     document.getElementById('shopcount').innerHTML=count+"件";
     document.getElementById('total').innerHTML="￥"+total;
+    document.getElementById('sub').value=tag;
 
 
   }
@@ -63,28 +64,33 @@ http://www.templatemo.com/free-website-templates/417-grill
         </div>
         <div class="col-md-6">
           <div class="cart-info">
-            <i class="fa fa-shopping-cart"></i>
+            <i class="fa fa-shopping-cart" ></i>
             (<a  id="shopcount">0</a>) 在你的购物车 (<a  id="total">0</a>)
-            <div class="sub">
-              <ul class="list-unstyled right-con">
-                <li class="list-unstyled">
+            <div class="sub"  >
+              <form method="post" action="/order">
+<%--              <ul class="list-unstyled right-con">--%>
+<%--                <li class="list-unstyled">--%>
 
-                  <div class="menu-txt">
-                    <h4 data-icon="00">珍珠奶茶</h4>
+<%--                  <div class="menu-txt">--%>
+<%--                    <h4 data-icon="00">珍珠奶茶</h4>--%>
 
-                    <p class="list2">
-                      <b>￥</b><b>2.00</b>
-                    </p>
-                    <div class="btn">
-                      <button class="minus">-</button>
-                      <i>0</i>
-                      <button class="add">+</button>
-                      <i class="price">2.00</i>
-                    </div>
-                  </div>
-                </li>
+<%--                    <p class="list2">--%>
+<%--                      <b>￥</b><b>2.00</b>--%>
+<%--                    </p>--%>
+<%--                    <div class="btn">--%>
+<%--                      <button class="minus">-</button>--%>
+<%--                      <i>0</i>--%>
+<%--                      <button class="add">+</button>--%>
+<%--                      <i class="price">2.00</i>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                </li>--%>
+<%--                --%>
+  <input name="tag" type="text" id="sub">
+  <input name="op" type="text" value="addorder" hidden>
+<%--              </ul>--%><button  class="navbar-btn btn" onclick="">submit</button>
+              </form>
 
-              </ul>
             </div>
           </div>
         </div>
@@ -109,6 +115,7 @@ http://www.templatemo.com/free-website-templates/417-grill
 <%--            </ul>--%>
 <%--          </div>--%>
 <%--        </div>--%>
+
         <div class="col-md-3">
           <div class="search-box">
             <form name="search_form" method="get" class="search_form">
