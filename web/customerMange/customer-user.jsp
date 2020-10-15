@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
 <%@ page import="com.etc.entity.Store" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.etc.entity.Customer" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -13,7 +15,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>商家后台管理系统</title>
+  <title>个人中心</title>
   <meta name="description" content="这是一个 user 页面">
   <meta name="keywords" content="user">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -24,9 +26,151 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="/customerMange/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+
+    function check(){
+      if($('span').is('.wrong')){
+        alert("请填写正确信息");
+        return false;
+      }else{
+        return true;
+      }
+
+    }
+
+    $(function () {
+
+      var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,12}$/;
+
+      var tpatten = /^1[34578]\d{9}$/;
+      var rname= /^[\u4e00-\u9fa5]{2,12}$/;
+
+
+
+      // var text;  // 全局变量用于保存文本框的内容
+      // $("input:text").focus(function() {
+      //     text = $(this).val();
+      //     $(this).val("");
+      // });
+      // $("input:text").blur(function() {
+      //     $(this).val()!="" || $(this).val(text);
+      // });
+
+
+      $('.username','.telephone','.realname').on('focus',function(){
+
+        $(this).siblings('span').removeClass('right');
+        $(this).siblings('span').removeClass('wrong');
+
+
+
+      });
+
+
+
+
+      $('.username').on('blur', function () {
+        var usernameVal = $(this).val();
+        if (regex.test(usernameVal)) {
+          $(this).siblings('span').removeClass('wrong');
+          $(this).siblings('span').addClass('right');
+          $(this).siblings('span').html('');
+        } else if(usernameVal.length<4){
+          $(this).siblings('span').addClass('wrong');
+          $(this).siblings('span').html('用户名应为4-10位');
+
+        }else{
+          $(this).siblings('span').addClass('wrong');
+          $(this).siblings('span').html('用户名不能包含特殊字符');
+        }
+      });
+
+
+
+      $('.telephone').on('blur', function () {
+        var telephoneVal = $(this).val();
+        if (tpatten.test(telephoneVal)) {
+          $(this).siblings('span').removeClass('wrong');
+          $(this).siblings('span').addClass('right');
+          $(this).siblings('span').html('');
+        } else{
+          $(this).siblings('span').addClass('wrong');
+          $(this).siblings('span').html('请输入有效的手机号');
+        }
+      });
+
+      $('.realname').on('blur', function () {
+        var rnameVal = $(this).val();
+        if (rname.test(rnameVal)) {
+          $(this).siblings('span').removeClass('wrong');
+          $(this).siblings('span').addClass('right');
+          $(this).siblings('span').html('');
+        } else{
+          $(this).siblings('span').addClass('wrong');
+          $(this).siblings('span').html('请输入真实姓名');
+        }
+      });
+
+
+      <%--$("#username").blur(function() {--%>
+
+      <%--  $.post("/user?op=ajaxCheckName", "username=" + this.value, function(data) {--%>
+
+      <%--    if ($("#username").val()==${user}) {--%>
+      <%--      console.log("${user}");--%>
+      <%--    }else if (data == "true") {--%>
+      <%--        console.log("false");--%>
+      <%--      $("#show").addClass('wrong');--%>
+      <%--       $("#show")[0].innerHTML = "该用户名已存在，请重新输入！";--%>
+      <%--    } else {--%>
+      <%--      console.log("true");--%>
+      <%--      $("#show").removeClass('wrong');--%>
+
+
+      <%--      $("#show")[0].innerHTML = "";--%>
+
+      <%--    }--%>
+
+      <%--  });--%>
+
+      <%--});--%>
+
+    });
+  </script>
+  <style type="text/css">
+    span {
+      color: #aaa;
+      font-size: 10px;
+
+
+
+    }
+
+    .right {
+      color: green;
+
+
+    }
+
+    .wrong {
+      color: red;
+
+    }
+  </style>
+
+
 </head>
 <body>
+
+
+
+
+
+
+
+
+
 <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
@@ -34,7 +178,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong></strong> <small>后台管理模板</small>
+    <strong>${user}</strong> <small>的个人中心</small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -62,11 +206,12 @@
   <!-- sidebar start -->
   <div class="admin-sidebar">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="admin-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="customer-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/store?op=query&sid=2" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/user?op=query" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/user?op=modify"><span class="am-icon-puzzle-piece"></span> 修改密码</a></li>
           <li><a href="admin-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
           <li><a href="admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
           <li><a href="admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
@@ -146,17 +291,31 @@
 
       </div>
 
-<% List<Store> list= (List<Store>) session.getAttribute("list");
-    for(Store store:list){
+      <c:if test="${!empty message}">
+        <%--            <h1>${message}</h1>--%>
+        <script type="text/javascript">
+          alert("${message}");
+        </script>
 
-%>
+        <%session.setAttribute("message",""); %>
+
+
+      </c:if>
+
+      <% List<Customer> list= (List<Customer>) session.getAttribute("list");
+        for(Customer customer:list){
+
+      %>
+
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal" action="/store" method="get" >
+        <form class="am-form am-form-horizontal" action="/user" method="get" onsubmit="return check()" >
           <div class="am-form-group">
-            <label  class="am-u-sm-3 am-form-label">商店名称</label>
+            <label  class="am-u-sm-3 am-form-label">名称</label>
             <div class="am-u-sm-9">
-              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="<%=store.getShopname() %>">
+              <input type="text" id="username" placeholder="名称/Name" name="username" class="username" maxlength="10" readonly="true"  value="<%=customer.getUsername() %>">
+              <span ></span>
+              <div><span id="show" ></span></div>
 
             </div>
           </div>
@@ -164,33 +323,29 @@
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">真实姓名</label>
             <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="<%=store.getRealname() %>">
-
+              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" class="realname" maxlength="10" value="<%=customer.getRealname() %>">
+              <br><span></span>
             </div>
           </div>
 
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="<%=store.getTelephone()%>">
+              <input type="tel" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone"  class="telephone" value="<%=customer.getTelepone()%>">
+              <br><span></span>
             </div>
           </div>
 
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">地址</label>
             <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="<%=store.getAddress()%>">
+              <input type="text" id="address" placeholder="输入你的地址" name="address" class="address" value="<%=customer.getAddress()%>">
+              <br><span></span>
             </div>
           </div>
 
 
-          <div class="am-form-group">
-            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-            <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >123</textarea>
-            </div>
-          </div>
-<% }%>
+          <% }%>
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
               <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->

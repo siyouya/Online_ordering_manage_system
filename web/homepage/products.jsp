@@ -59,7 +59,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         <div class="col-md-6">
           <div class="home-account">
             <a href="#">Home</a>
-            <a href="#">我的账户</a>
+            <a href="../customerMange/customer-index.jsp">我的账户</a>
           </div>
         </div>
         <div class="col-md-6">

@@ -30,46 +30,49 @@ public class DologinServlet extends HttpServlet {
 		System.out.println(profession);
 
 		HttpSession session = request.getSession();
-		 if ("customer".equals(profession)) {
+		if ("customer".equals(profession)) {
 			CustomerDao customerDao=new CustomerDao();
 			StoreDao dao=new StoreDao();
-			 int result=customerDao.checklogin(username,password);
-			 if (result>0){
-				 session.setAttribute("msg", "成功");
-				 ArrayList<Store> list=new ArrayList<Store>();
-				 list= (ArrayList<Store>) dao.query();
-				 session.setAttribute("stores",list);
-				 session.setAttribute("cid",result );
-				 request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "");
-			 }
+			int result=customerDao.checklogin(username,password);
+			if (result>0){
+				ArrayList<Store> list=new ArrayList<Store>();
+				list= (ArrayList<Store>) dao.query();
+				session.setAttribute("stores",list);
+				session.setAttribute("user", username);
+				session.setAttribute("cid", result);
+				request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "登入失败，请输入正确的账号密码");
+//				 request.getRequestDispatcher("../login.jsp").forward(request, response);
+				response.sendRedirect("../login.jsp");
+
+			}
 		}else if ("store".equals(profession)) {
 
-			 StoreDao storeDao=new StoreDao();
+			StoreDao storeDao=new StoreDao();
 
-			 int result=storeDao.checklogin(username,password);
-			 if (result>0){
-				 session.setAttribute("msg", "成功");
-				 session.setAttribute("sid", result);
-				 request.getRequestDispatcher("../storeMange/admin-index.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "成功");
-			 }
+			int result=storeDao.checklogin(username,password);
+			if (result>0){
+				session.setAttribute("msg", "成功");
+				session.setAttribute("sid", result);
+				request.getRequestDispatcher("../storeMange/admin-index.jsp").forward(request, response);
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "成功");
+			}
 
 		}else if ("rider".equals(profession)) {
-			 RiderDao riderDao=new RiderDao();
-			 int result= riderDao.checklogin(username,password);
-			 if (result>0){
-				 session.setAttribute("msg", "成功");
-				 session.setAttribute("rid", result);
-				 request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
-			 } else{
-				 System.out.println(result);
-				 session.setAttribute("msg", "成功");
-			 }
+			RiderDao riderDao=new RiderDao();
+			int result= riderDao.checklogin(username,password);
+			if (result>0){
+				session.setAttribute("msg", "成功");
+				session.setAttribute("rid", result);
+				request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
+			} else{
+				System.out.println(result);
+				session.setAttribute("msg", "成功");
+			}
 		}
 
 	}

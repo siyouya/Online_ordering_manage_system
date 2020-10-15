@@ -15,7 +15,7 @@ import java.util.Map;
 public class DBUtils {
 
 	private static final String DRIVERNAME = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/test";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "root";
 
