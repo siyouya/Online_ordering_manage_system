@@ -81,7 +81,21 @@ public class CustomerDao {
         }
         return false;
     }
+    public List<Customer> querynamebyid(int cid) throws SQLException {
 
+        ArrayList list=new ArrayList<Customer>();
+
+        ResultSet rs = DBUtils.doQuery("select * from cuser where cid=? ",cid);
+        while(rs.next()){
+
+            list.add(new Customer(rs.getInt("cid"),rs.getString("username"),
+                    rs.getString("password"),rs.getString("realname"),
+                    rs.getString("telephone"),rs.getString("address"),rs.getInt("state")));
+
+        }
+        DBUtils.free(rs);
+        return list;
+    }
 
 
 

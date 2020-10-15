@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * websockket 核心配置类,项目启动时会自动启动，类似与ContextListener.
  */
-public class WebSocketConfig implements ServerApplicationConfig{
+public class WebSocketConfig   implements ServerApplicationConfig  {
 
 
     /**

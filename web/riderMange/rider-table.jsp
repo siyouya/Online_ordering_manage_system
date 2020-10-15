@@ -196,7 +196,7 @@
                   <div class="am-btn-group am-btn-group-xs">
 
                     <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-copy"></span>接单</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-copy"></span>联系</button>
+
                   </div>
 
                 </div>

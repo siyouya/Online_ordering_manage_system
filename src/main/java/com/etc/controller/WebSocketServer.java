@@ -55,6 +55,7 @@ public class WebSocketServer {
         System.out.println(msg);
         // 接收到信息后进行广播
         broadcast(roomName, msg);
+        keepSession(roomName,username);
     }
 
     // 按照房间名进行广播
@@ -63,5 +64,28 @@ public class WebSocketServer {
             session.getBasicRemote().sendText(msg);
         }
     }
+
+    //判断userNameList相等遍历所在的房间号码,用session传值保存
+    public static void keepSession(String roomName, String username)throws Exception{
+        //获取房间号中的用户名
+        for (Session session : rooms.get(username)) {
+            //添加元素 ,房间号作为唯一值，用户名作为属性
+          userNameList.put(roomName,username);
+        }
+        //
+        Set<String> set=userNameList.keySet();
+        for(String room_id:set){
+            if(username.equals(userNameList.get(3))){
+                //保存？
+                for(Session session : rooms.get(username)) {
+                    session.getBasicRemote().sendText(room_id);
+                }
+            }
+        }
+
+
+
+    }
+
 
 }

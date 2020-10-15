@@ -73,6 +73,17 @@
     }
   }
 
+  function chat(id) {
+
+    if (confirm("联系")) {
+      document.getElementById('op').value = "rider_create_chat";
+      document.getElementById('roid').value = id;
+      var form2 = document.getElementById('oid');
+      form2.action = "/creatweb";
+      form2.submit();
+    }
+  }
+
 </script>
 <div class="am-cf admin-main">
   <!-- sidebar start -->
@@ -194,7 +205,7 @@
                   <div class="am-btn-group am-btn-group-xs">
 
                     <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="recorder(<%=orderRider.getOid()%>)"><span class="am-icon-trash-o"></span>完成</button>
-
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(<%=orderRider.getOid()%>)"><span class="am-icon-trash-o"></span>联系</button>
                   </div>
 
                 </div>

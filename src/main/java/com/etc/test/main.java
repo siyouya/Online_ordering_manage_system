@@ -1,9 +1,7 @@
 package com.etc.test;
 
 import com.etc.dao.MapDistance;
-import com.etc.util.DBUtils;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class main {
