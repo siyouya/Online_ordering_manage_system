@@ -55,7 +55,7 @@ public class WebSocketServer {
         System.out.println(msg);
         // 接收到信息后进行广播
         broadcast(roomName, msg);
-        keepSession(roomName,username);
+     //   keepSession(roomName,username);
     }
 
     // 按照房间名进行广播
@@ -68,21 +68,20 @@ public class WebSocketServer {
     //判断userNameList相等遍历所在的房间号码,用session传值保存
     public static void keepSession(String roomName, String username)throws Exception{
         //获取房间号中的用户名
-//        for (Session session : rooms.get(username)) {
-//            //添加元素 ,房间号作为唯一值，用户名作为属性
-//            System.out.println(roomName);
-//            System.out.println(username);
-//            userNameList.put(roomName,username);
-//        }
-        //
-        Set<String> set=userNameList.keySet();
-        for(String room_id:set){
-            if(username.equals(userNameList.get(3))){
-                //保存？
-                for(Session session : rooms.get(username)) {
-                    session.getBasicRemote().sendText(room_id);
-                }
-            }
+
+        //   Map<String, String> userNameList = new ConcurrentHashMap();
+        //session中[1,session[xh,cxy,jh]];
+        //session中[2,session[xh,cxy]];
+        //session中[3,session[xh]];
+        //想要实现[xh,session[1,2,3]]
+        //[cxy,session[1,2]]
+        //[jh,session[3]]
+        //userNamelist=[xh,cxy,jh,xq,hym]
+        for (Session session : rooms.get(roomName)) {
+            System.out.println(session.getId());
+            session.getBasicRemote();
+
+            session.getBasicRemote().sendText(username);
         }
 
 

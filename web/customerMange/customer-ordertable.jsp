@@ -145,11 +145,11 @@
       <div class="am-u-md-6 am-cf">
         <div class="am-fl am-cf">
           <div class="am-btn-toolbar am-fl">
-<%--            <div class="am-btn-group am-btn-group-xs">--%>
-<%--              <button type="button" class="am-btn am-btn-default"  data-toggle="modal" data-target="#myModal"><span class="am-icon-plus"></span> 新增</button>--%>
+            <%--            <div class="am-btn-group am-btn-group-xs">--%>
+            <%--              <button type="button" class="am-btn am-btn-default"  data-toggle="modal" data-target="#myModal"><span class="am-icon-plus"></span> 新增</button>--%>
 
-<%--              <button type="button" class="am-btn am-btn-default" onclick="mutildel()"><span class="am-icon-trash-o"></span> 删除</button>--%>
-<%--            </div>--%>
+            <%--              <button type="button" class="am-btn am-btn-default" onclick="mutildel()"><span class="am-icon-trash-o"></span> 删除</button>--%>
+            <%--            </div>--%>
 
 
           </div>
@@ -180,10 +180,9 @@
               <th class="table-title">用户姓名</th>
               <th class="table-title">用户地址</th>
               <th class="table-text">用户电话</th>
-              <th class="table-date">骑手姓名</th>
-              <th class="table-date">骑手电话</th>
+              <th class="table-date">商家点名</th>
+              <th class="table-date">订单物品</th>
               <th class="table-date">接单时间</th>
-              <th class="table-date">完成时间</th>
               <th class="table-date">订单状态</th>
               <th class="table-set">操作</th>
             </tr>
@@ -192,35 +191,36 @@
 
             <c:forEach items="${list}" var="orderRider">
 
-            <tr id="${orderRider.oid}">
-              <td>${orderRider.oid}</td>
-              <td>${orderRider.cid.realname}</td>
-              <td>${orderRider.cid.address}</td>
-              <td>${orderRider.cid.telepone}</td>
-              <td>${orderRider.rid.realname}</td>
-              <td>${orderRider.rid.telephone}</td>
-              <td>${orderRider.acceptdate}</td>
-              <td>${orderRider.completedate}</td>
-              <td>
+              <tr id="${orderRider.oid}">
+                <td>${orderRider.oid}</td>
+                <td>${orderRider.cid.realname}</td>
+                <td>${orderRider.cid.address}</td>
+                <td>${orderRider.cid.telepone}</td>
+                <td>${orderRider.sid.shopname}</td>
+                <td>${orderRider.dlist}</td>
+                <td>${orderRider.acceptdate}</td>
+
+                <td>
                   <c:choose>
                     <c:when test="${orderRider.state==0}">取消订单</c:when>
                     <c:when test="${orderRider.state==1}">在派送</c:when>
                     <c:when test="${orderRider.state==2}">已完成</c:when>
                     <c:otherwise>
-                    出错了
+                      出错了
                     </c:otherwise>
                   </c:choose>
-              </td>
+                </td>
 
-              <td>
-                <div class="am-btn-toolbar">
-                  <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(${orderRider.oid})"><span class="am-icon-trash-o"></span>联系</button>
-                 </div>
-                </div>
-              </td>
-            </tr>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 支付</button>
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(${orderRider.oid})"><span class="am-icon-trash-o"></span>联系店家</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </c:forEach>
 
             </tbody>

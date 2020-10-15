@@ -82,13 +82,17 @@ public class OrderServlet extends HttpServlet {
         }else if("addorder".equals(op)){
             //修改状态
 
+            try {
                 addorder(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
         }
 
     }
 
-    private void addorder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void addorder(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         HttpSession session   = request.getSession();
         String tag=request.getParameter("tag");
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
@@ -101,17 +105,21 @@ public class OrderServlet extends HttpServlet {
                 dishDao.sellone(strs[i],sid);
             } catch (Exception e) {
             }
-
         }
-response.sendRedirect("../homepage/index.jsp");
+        //查询用户的订单信息返回给用户
+        OrderDao orderDao=new OrderDao();
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+        list= (ArrayList<OrderRider>) orderDao.querybycid2(cid);
+        session.setAttribute("list",list);
+        response.sendRedirect("../customerMange/customer-ordertable.jsp");
 
     }
 
     public void showorderByshop(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
-        ArrayList<Order> list=new ArrayList<Order>();
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
-        list= (ArrayList<Order>) orderDao.query(sid,"else");
+        list= (ArrayList<OrderRider>) orderDao.query(sid,"else");
 
         session.setAttribute("list", list);
         System.out.println("查询成功");
@@ -123,7 +131,7 @@ response.sendRedirect("../homepage/index.jsp");
         HttpSession session   = request.getSession();
         ArrayList<Order> list=new ArrayList<Order>();
         int cid=Integer.valueOf(session.getAttribute("cid").toString());
-        list= (ArrayList<Order>) orderDao.query(cid,"customer");
+      //  list= (ArrayList<Order>) orderDao.query(cid,"customer");
 
 
         session.setAttribute("list", list);
@@ -136,7 +144,7 @@ response.sendRedirect("../homepage/index.jsp");
 
         int did= Integer.parseInt(request.getParameter("oid"));
         int result=orderDao.quxiao(did);
-        response.sendRedirect("../storeMange/admin-ordertable.jsp");
+        response.sendRedirect("order?op=selbyshop");
     }
 
     public void recorder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
