@@ -239,7 +239,7 @@
       return;
     }
     //var username = document.getElementById("username").value.trim();
-    var username='<%=request.getAttribute("sname")%>';//有3个骑手顾客商家先测试1
+    var username='<%=request.getAttribute("ridername")%>';//有3个骑手顾客商家先测试1
     if (username == "" || username==null) {
       alert("用户名不能为空")
       return;
