@@ -1,9 +1,6 @@
 package com.etc.dao;
 
-import com.etc.entity.Customer;
-import com.etc.entity.Order;
-import com.etc.entity.OrderRider;
-import com.etc.entity.Store;
+import com.etc.entity.*;
 import com.etc.util.DBUtils;
 
 import java.sql.ResultSet;
@@ -13,18 +10,26 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderDao {
-    public List<Order> query(int sid,String way) throws SQLException {
+    public List<OrderRider> query(int sid,String way) throws SQLException {
         ResultSet rs=null;
-        ArrayList<Order> list=new ArrayList<Order>();
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
         if ("customer".equals(way)){
         rs= DBUtils.doQuery("select * from orderinfo where cid=?",sid);
         }else {
-            rs = DBUtils.doQuery("select * from orderinfo where sid=?",sid);}
+            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,orderinfo.completedate,cuser.realname,cuser.telephone,cuser.address,ruser.realname as riderrealname,ruser.telephone as ridertelephone from cuser,ruser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid=ruser.rid  and orderinfo.sid=?",sid);}
         while(rs.next()){
-
-            list.add(new Order(rs.getInt("oid"),rs.getInt("cid"),
-                    rs.getInt("sid"),rs.getInt("rid"),rs.getString("dlist"),
-                    rs.getDate("acceptdate"),rs.getDate("completedate"),rs.getInt("state")));
+            int oid=rs.getInt("oid");
+            int state=rs.getInt("state");
+            Date acceptdate=rs.getDate("acceptdate");
+            Date completedate=rs.getDate("completedate");
+            Customer customer=new Customer();
+            customer.setRealname(rs.getString("realname"));
+            customer.setAddress(rs.getString("address"));
+            customer.setTelepone(rs.getString("telephone"));
+            Rider rider=new Rider();
+            rider.setRealname(rs.getString("riderrealname"));
+            rider.setTelephone(rs.getString("ridertelephone"));
+            list.add(new OrderRider(oid,acceptdate,completedate,state,customer,rider));
 
         }
         DBUtils.free(rs);
@@ -56,6 +61,30 @@ public class OrderDao {
         return count;
     }
 
+    public List<OrderRider> querybycid2(int cid) throws SQLException {
+        ResultSet rs=null;
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+        rs= DBUtils.doQuery("select suser.shopname,cuser.realname,orderinfo.state,cuser.telephone,cuser.address,orderinfo.oid,orderinfo.acceptdate,orderinfo.dlist  from orderinfo  ,suser,cuser where orderinfo.sid=suser.sid and  orderinfo.cid=cuser.cid and  orderinfo.cid=?  order by orderinfo.oid desc ",cid);
+        while(rs.next()){
+            int oid=rs.getInt("oid");
+            Date acceptdate=rs.getDate("acceptdate");
+            int state=rs.getInt("state");
+            String dlist=rs.getString("dlist");
+
+            Store store=new Store();
+            store.setShopname(rs.getString("shopname"));
+
+            Customer customer=new Customer();
+
+            customer.setRealname(rs.getString("realname"));
+            customer.setAddress(rs.getString("address"));
+            customer.setTelepone(rs.getString("telephone"));
+
+            list.add(new OrderRider(oid,acceptdate,dlist,state,store,customer));
+        }
+        DBUtils.free(rs);
+        return list;
+    }
     public List<Order> querybycid(int cid) throws SQLException {
         ResultSet rs=null;
         ArrayList<Order> list=new ArrayList<Order>();

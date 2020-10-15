@@ -94,7 +94,22 @@ public class OrderRider {
         this.oid = oid;
         this.cid = cid;
         this.sid = sid;
-
-
     }
+    public OrderRider(int oid,Date acceptdate,Date completedate,int state,Customer cid, Rider rid ) {
+        this.oid = oid;
+        this.cid = cid;
+        this.rid = rid;
+        this.acceptdate=acceptdate;
+        this.completedate=completedate;
+        this.state=state;
+    }
+    public OrderRider(int oid,Date acceptdate,String dlist,int state,Store sid ,Customer cid) {
+        this.oid = oid;
+        this.cid = cid;
+        this.sid = sid;
+        this.acceptdate=acceptdate;
+        this.state=state;
+        this.dlist=dlist;
+    }
+
 }
