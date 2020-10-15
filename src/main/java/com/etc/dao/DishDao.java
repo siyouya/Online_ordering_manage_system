@@ -45,8 +45,8 @@ public class DishDao {
         int count  =DBUtils.doUpdate("update  dishes set number=0 where did=?; ",did);
         return count;
     }
-    public int sellone(String dishname){
-int count =DBUtils.doUpdate("update dishes set number=number-1 WHERE dishname=?",dishname);
+    public int sellone(String dishname, int sid){
+int count =DBUtils.doUpdate("update dishes set number=number-1 WHERE dishname=? and sid=?",dishname,sid);
 return count;
     }
 }

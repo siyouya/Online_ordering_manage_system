@@ -98,7 +98,7 @@ public class OrderServlet extends HttpServlet {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
-                dishDao.sellone(strs[i]);
+                dishDao.sellone(strs[i],sid);
             } catch (Exception e) {
             }
 
