@@ -16,7 +16,7 @@ public class OrderDao {
         if ("customer".equals(way)){
         rs= DBUtils.doQuery("select * from orderinfo where cid=?",sid);
         }else {
-            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,orderinfo.completedate,cuser.realname,cuser.telephone,cuser.address,ruser.realname as riderrealname,ruser.telephone as ridertelephone from cuser,ruser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid=ruser.rid  and orderinfo.sid=?",sid);}
+            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,orderinfo.completedate,cuser.realname,cuser.telephone,cuser.address,ruser.realname as riderrealname,ruser.telephone as ridertelephone from cuser,ruser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid=ruser.rid  and orderinfo.sid=?  order by orderinfo.oid desc ",sid);}
         while(rs.next()){
             int oid=rs.getInt("oid");
             int state=rs.getInt("state");
@@ -31,6 +31,26 @@ public class OrderDao {
             rider.setTelephone(rs.getString("ridertelephone"));
             list.add(new OrderRider(oid,acceptdate,completedate,state,customer,rider));
 
+        }
+        DBUtils.free(rs);
+        return list;
+    }
+
+
+
+    public List<OrderRider> querynorider(int sid) throws SQLException {
+        ResultSet rs=null;
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,cuser.realname,cuser.telephone,cuser.address  from cuser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid is null and orderinfo.sid=? order by orderinfo.oid desc",sid);
+        while(rs.next()){
+            int oid=rs.getInt("oid");
+            int state=rs.getInt("state");
+            Date acceptdate=rs.getDate("acceptdate");
+            Customer customer=new Customer();
+            customer.setRealname(rs.getString("realname"));
+            customer.setAddress(rs.getString("address"));
+            customer.setTelepone(rs.getString("telephone"));
+            list.add(new OrderRider(oid,acceptdate,state,customer));
         }
         DBUtils.free(rs);
         return list;

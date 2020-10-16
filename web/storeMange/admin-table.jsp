@@ -132,9 +132,7 @@
       </li>
       <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
       <li><a href="/order?op=selbyshop"><span class="am-icon-pencil-square-o"></span> 订单</a></li>
-      <li><a href="/creatweb"><span class="am-icon-pencil-square-o"></span>在线聊天</a></li>
-      <li><a href="/login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
-
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">

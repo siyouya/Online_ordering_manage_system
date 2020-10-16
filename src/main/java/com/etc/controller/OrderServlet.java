@@ -120,7 +120,9 @@ public class OrderServlet extends HttpServlet {
         ArrayList<OrderRider> list=new ArrayList<OrderRider>();
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
         list= (ArrayList<OrderRider>) orderDao.query(sid,"else");
-
+        ArrayList<OrderRider> noriderlist=new ArrayList<OrderRider>();
+        noriderlist=(ArrayList<OrderRider>)orderDao.querynorider(sid);
+        session.setAttribute("noriderlist", noriderlist);
         session.setAttribute("list", list);
         System.out.println("查询成功");
         response.sendRedirect("../storeMange/admin-ordertable.jsp");

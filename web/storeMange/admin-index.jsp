@@ -62,7 +62,7 @@
   <!-- sidebar start -->
   <div class="admin-sidebar">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="admin-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="#"><span class="am-icon-home"></span> 首页</a></li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
@@ -74,8 +74,7 @@
       </li>
       <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
       <li><a href="/order?op=selbyshop"><span class="am-icon-pencil-square-o"></span> 订单</a></li>
-      <li><a href="/creatweb"><span class="am-icon-pencil-square-o"></span>在线聊天</a></li>
-      <li><a href="/login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">

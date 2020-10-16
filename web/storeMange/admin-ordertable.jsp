@@ -112,10 +112,7 @@
       </li>
       <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
       <li><a href="/order?op=selbyshop"><span class="am-icon-pencil-square-o"></span> 订单</a></li>
-      <li><a href="../admin-chat.jsp"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-      <li><a href="/creatweb"><span class="am-icon-pencil-square-o"></span>在线聊天</a></li>
-      <li><a href="/login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
-
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -189,6 +186,38 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${noriderlist}" var="orderRider">
+
+              <tr id="${orderRider.oid}">
+                <td>${orderRider.oid}</td>
+                <td>${orderRider.cid.realname}</td>
+                <td>${orderRider.cid.address}</td>
+                <td>${orderRider.cid.telepone}</td>
+                <td>还未有骑手接单</td>
+                <td>null</td>
+                <td>${orderRider.acceptdate}</td>
+                <td>null</td>
+                <td>
+                  <c:choose>
+                    <c:when test="${orderRider.state==0}">取消订单</c:when>
+                    <c:when test="${orderRider.state==1}">在派送</c:when>
+                    <c:when test="${orderRider.state==2}">已完成</c:when>
+                    <c:otherwise>
+                      出错了
+                    </c:otherwise>
+                  </c:choose>
+                </td>
+
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(${orderRider.oid})"><span class="am-icon-trash-o"></span>联系</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </c:forEach>
 
             <c:forEach items="${list}" var="orderRider">
 

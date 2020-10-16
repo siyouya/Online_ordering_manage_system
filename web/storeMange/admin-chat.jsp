@@ -53,7 +53,7 @@
   <!-- sidebar start -->
   <div class="admin-sidebar">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="/storeMange/admin-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="admin-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
@@ -63,10 +63,9 @@
           <li><a href="../storeMange/admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
         </ul>
       </li>
-      <li><a href="/dish?op=select"><span class="am-icon-table"></span>菜单</a></li>
+      <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
       <li><a href="/order?op=selbyshop"><span class="am-icon-pencil-square-o"></span> 订单</a></li>
-      <li><a href="/creatweb"><span class="am-icon-pencil-square-o"></span>在线聊天</a></li>
-      <li><a href="/login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -89,40 +88,27 @@
   <div class="qqBox">
     <div class="BoxHead">
       <div class="headImg">
-        <img src="img/6.jpg"/>
+        <img src="/storeMange/img/6.jpg"/>
       </div>
-      <div class="internetName">恒宝</div>
+      <div class="internetName">商家</div>
     </div>
     <div class="context">
       <div class="conLeft">
         <ul>
           <li>
-            <div class="liLeft"><img src="img/20170926103645_04.jpg"/></div>
+            <div class="liLeft"><img src="/storeMange/img/20170926103645_04.jpg"/></div>
             <div class="liRight">
-              <span class="intername">前端交流群</span>
-              <span class="infor">厉害了</span>
+              <span class="intername">顾客</span>
+              <span class="infor">我有一个新的请求</span>
             </div>
           </li>
-          <li class="bg">
-            <div class="liLeft"><img src="img/20170926103645_19.jpg"/></div>
-            <div class="liRight">
-              <span  class="intername">赵鹏</span>
-              <span class="infor">[流泪]</span>
-            </div>
-          </li>
-          <li>
-            <div class="liLeft"><img src="img/20170926103645_27.jpg"/></div>
-            <div class="liRight">
-              <span  class="intername">web交流群</span>
-              <span class="infor">666</span>
-            </div>
-          </li>
+
 
         </ul>
       </div>
       <div class="conRight">
         <div class="Righthead">
-          <div class="headName">赵鹏</div>
+          <div class="headName">顾客</div>
           <div class="headConfig">
             <ul>
               <li><img src="/storeMange/img/20170926103645_06.jpg"/></li>

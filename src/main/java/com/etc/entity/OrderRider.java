@@ -12,6 +12,8 @@ public class OrderRider {
     private Date completedate;
     private int state;
 
+
+
     public int getOid() {
         return oid;
     }
@@ -77,9 +79,11 @@ public class OrderRider {
     }
 
     public OrderRider() {
+        super();
     }
 
     public OrderRider(int oid, Customer cid, Store sid, Rider rid, String dlist, Date acceptdate, Date completedate, int state) {
+        super();
         this.oid = oid;
         this.cid = cid;
         this.sid = sid;
@@ -110,6 +114,12 @@ public class OrderRider {
         this.acceptdate=acceptdate;
         this.state=state;
         this.dlist=dlist;
+    }
+    public OrderRider(int oid, Date acceptdate, int state, Customer cid) {
+        this.oid=oid;
+        this.acceptdate=acceptdate;
+        this.state=state;
+        this.cid=cid;
     }
 
 }
