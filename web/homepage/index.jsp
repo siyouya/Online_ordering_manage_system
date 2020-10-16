@@ -195,7 +195,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         ArrayList<Store> list= (ArrayList<Store>) session.getAttribute("stores");
         for(Store store:list){
       %>
-      <div class="col-md-4 col-sm-6">
+      <div class="col-md-4 col-sm-6" ><%=store.getAddress()%>
         <div class="blog-post">
           <div class="blog-thumb">
             <img src="/homepage/images/blogpost<%=store.getSid()%>.jpg" alt="" />

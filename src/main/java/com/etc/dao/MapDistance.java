@@ -1,15 +1,23 @@
 package com.etc.dao;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
+import javax.xml.ws.spi.http.HttpContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 public class MapDistance {
     public static final String MAP_KEY ="fb984f3aaa64a50dd2ffc98545435540";
+   // public static final String MAP_KEY ="9b2c5c13a6501227c97613b559324a12";
+
     public static long getDistanceByAdress(String start,String end){
         String startLonLat = getLonLat(start);
         String endLonLat = getLonLat(end);
@@ -17,9 +25,13 @@ public class MapDistance {
         return dis;
     }
     public static String getLonLat(String address){
+
 //返回输入地址address的经纬度信息, 格式是 经度,纬度
         String queryUrl = "http://restapi.amap.com/v3/geocode/geo?key="+MAP_KEY+"&address="+address;
-        String queryResult = getResponse(queryUrl); //高德接品返回的是JSON格式的字符串
+        System.out.println(queryUrl);
+        //String queryResult = getResponse(queryUrl); //高德接品返回的是JSON格式的字符串
+        String queryResult = sendGetByApache(queryUrl);
+        System.out.println(queryResult);
         JSONObject job = JSONObject.parseObject(queryResult);
         JSONObject jobJSON = JSONObject.parseObject(job.get("geocodes").toString().substring(1, job.get("geocodes").toString().length()-1));
         String DZ = jobJSON.get("location").toString();
@@ -88,11 +100,14 @@ public class MapDistance {
         StringBuffer result = new StringBuffer();
         try {
             URL url = new URL(serverUrl);
+
             URLConnection conn = url.openConnection();
+
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
             while((line = in.readLine()) != null){
                 result.append(line);
+
             }
             in.close();
         } catch (MalformedURLException e) {
@@ -101,6 +116,31 @@ public class MapDistance {
             e.printStackTrace();
         }
         return result.toString();
+    }
+
+    private static String sendGetByApache(String url) {
+        StringBuilder buffer = new StringBuilder();
+
+        DefaultHttpClient client = new DefaultHttpClient();
+        try {
+            HttpGet get = new HttpGet(url);
+            HttpResponse response = client.execute(get);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
+                String str;
+                while ((str = br.readLine()) != null) {
+                    buffer.append(str);
+                }
+                br.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            client.getConnectionManager().shutdown();
+        }
+
+        return buffer.toString();
     }
 
 }
