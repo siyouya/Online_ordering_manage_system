@@ -71,6 +71,12 @@ public class DishServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }else if ("bypage".equals(op)){
+            try {
+                showDishBypage(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -92,8 +98,29 @@ public class DishServlet extends HttpServlet {
         HttpSession session   = request.getSession();
 
         int sid=Integer.valueOf(request.getParameter("sid"));
+        int page=Integer.valueOf(request.getParameter("page"));
         session.setAttribute("sid",sid);
-        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid);
+        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
+
+
+
+        session.setAttribute("list", list);
+        System.out.println("查询成功");
+        response.sendRedirect("../homepage/products.jsp");
+        //request.getRequestDispatcher().forward(request, response);
+
+    }
+
+    /**
+     *分页查询
+     */
+    public void showDishBypage(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session   = request.getSession();
+
+
+        int page=Integer.valueOf(request.getParameter("page"));
+        int sid=Integer.valueOf(session.getAttribute("sid").toString());
+        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
 
 
 

@@ -213,7 +213,7 @@ $(document).ready(
         <div class="blog-post">
           <div class="blog-thumb">
 
-            <a href="/dish?op=begindish&sid=${store.sid}"> <img src="/homepage/images/blogpost1.jpg" alt="" /></a>
+            <a href="/dish?op=begindish&sid=${store.sid}&page=1"> <img src="/homepage/images/blogpost1.jpg" alt="" /></a>
             <div hidden class="showsore">${store.address}</div>
           </div>
           <div class="blog-content">

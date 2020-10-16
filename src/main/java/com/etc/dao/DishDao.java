@@ -26,6 +26,30 @@ public class DishDao {
         return list;
     }
 
+    /**
+     *
+     * @param sid 店家id
+     * @param page 分页查询
+     * @return
+     * @throws SQLException
+     */
+    public List<Disher> query(int sid,int page) throws SQLException {
+
+        ArrayList<Disher> list=new ArrayList<Disher>();
+        page=12*(page-1);
+        ResultSet rs = DBUtils.doQuery("select * from(SELECT * from dishes where sid=?) as tep limit ?,12",sid,page);
+        while(rs.next()){
+
+            list.add(new Disher(rs.getInt("did"),rs.getString("dishname"),
+                    rs.getInt("number"),rs.getString("rmaterial"),
+                    rs.getInt("price"),rs.getInt("sid")));
+
+        }
+        DBUtils.free(rs);
+        return list;
+    }
+
+
     public int deldish(String did){
         int id=Integer.parseInt(did);
         int count  = DBUtils.doUpdate("delete from dishes where did =?",id);

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%@ page import="com.etc.entity.Disher" %>
@@ -171,42 +172,38 @@ http://www.templatemo.com/free-website-templates/417-grill
     </div>
     <div class="row" id="Container">
 <%--      产品开始--%>
-      <%
-        ArrayList<Disher> list= (ArrayList) session.getAttribute("list");
-        for(Disher dish:list){
-      %>
+      <c:forEach items="${list}" var="dish">
       <div class="col-md-3 col-sm-6 mix portfolio-item ">
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
-            <img src="images/product<%=dish.getDid()%>.jpg" alt="" />
+            <img src="images/product1.jpg" alt="" />
             <div class="hover">
               <div class="hover-iner">
-                <a  onclick="adddish('<%=dish.getDishname()%>','<%=dish.getPrice()%>')"><img src="images/open-icon.png" alt="" /></a>
-                <span><%=dish.getDishname()%></span>
+                <a  onclick="adddish('${dish.dishname}','${dish.price}')"><img src="images/open-icon.png" alt="" /></a>
+                <span>${dish.dishname}</span>
               </div>
             </div>
           </div>
           <div class="label-text">
-            <h3><a href="single-post.html"><%=dish.getDishname()%></a></h3>
-            <span class="text-category">￥<%=dish.getPrice()%></span>
+            <h3><a href="single-post.html">${dish.dishname}</a></h3>
+            <span class="text-category">￥${dish.price}</span>
           </div>
         </div>
       </div>
 
   <%--      产品结尾--%>
-  <%
-    }%>
+      </c:forEach>
     </div>
     <div class="pagination">
       <div class="row">
         <div class="col-md-12">
           <ul>
             <li><a href="#">Previous</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">Next</a></li>
+            <li><a href="/dish?op=bypage&page=1">1</a></li>
+            <li><a href="/dish?op=bypage&page=2">2</a></li>
+            <li><a href="/dish?op=bypage&page=3">3</a></li>
+            <li><a href="/dish?op=bypage&page=4">4</a></li>
+            <li><a href="/dish?op=bypage&page=5">Next</a></li>
           </ul>
         </div>
       </div>
