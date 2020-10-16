@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
 
 <%@ page import="java.util.ArrayList" %>
 
@@ -198,30 +199,27 @@
             </tr>
             </thead>
             <tbody>
-            <%
-              ArrayList<Disher> list= (ArrayList) session.getAttribute("list");
-              for(Disher dish:list){
-            %>
-            <tr id="tr<%=dish.getDid()%>">
-              <td><input type="checkbox" class="checkb" value="<%=dish.getDid()%>"/></td>
-              <td><%=dish.getDid()%></td>
-              <td><%=dish.getDishname()%></td>
-              <td><%=dish.getNumber()%></td>
-              <td><%=dish.getPrice()%></td>
-              <td><%=dish.getRmaterial()%></td>
-              <td hidden><%=dish.getDid()%></td>
+
+            <c:forEach items="${list}" var="dish">
+            <tr id="tr${dish.did}">
+              <td><input type="checkbox" class="checkb" value="${dish.did}"/></td>
+              <td>${dish.did}</td>
+              <td>${dish.dishname}</td>
+              <td>${dish.number}</td>
+              <td>${dish.price}</td>
+              <td>${dish.rmaterial}</td>
+              <td hidden>${dish.did}</td>
               <td>
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for3('tr<%=dish.getDid()%>')" data-toggle="modal"  data-target="#myModal2" ><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs"><a href="/dish?op=sellout&did=<%=dish.getDid()%>"><span class="am-icon-copy" id="sellout"></span> 售罄</a></button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(<%=dish.getDid()%>)"><span class="am-icon-trash-o"></span> 删除</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for3('tr${dish.did}')" data-toggle="modal"  data-target="#myModal2" ><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs"><a href="/dish?op=sellout&did=${dish.did}"><span class="am-icon-copy" id="sellout"></span> 售罄</a></button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${dish.did})"><span class="am-icon-trash-o"></span> 删除</button>
                   </div>
                 </div>
               </td>
             </tr>
-            <%
-              }%>
+            </c:forEach>
 
             </tbody>
           </table>

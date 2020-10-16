@@ -2,7 +2,6 @@ package com.etc.controller;
 
 import com.etc.dao.DishDao;
 import com.etc.dao.OrderDao;
-import com.etc.entity.Order;
 import com.etc.entity.OrderRider;
 
 import javax.servlet.ServletException;
@@ -131,15 +130,12 @@ public class OrderServlet extends HttpServlet {
     }
     public void showorderBycus(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
-        ArrayList<Order> list=new ArrayList<Order>();
+        OrderDao orderDao=new OrderDao();
         int cid=Integer.valueOf(session.getAttribute("cid").toString());
-      //  list= (ArrayList<Order>) orderDao.query(cid,"customer");
-
-
-        session.setAttribute("list", list);
-        System.out.println("查询成功");
-        response.sendRedirect("../storeMange/admin-ordertable.jsp");
-        //request.getRequestDispatcher().forward(request, response);
+        ArrayList<OrderRider> list=new ArrayList<OrderRider>();
+        list= (ArrayList<OrderRider>) orderDao.querybycid2(cid);
+        session.setAttribute("list",list);
+        response.sendRedirect("../customerMange/customer-ordertable.jsp");
 
     }
     public void quxiao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {

@@ -1,176 +1,23 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
-<%@ page import="com.etc.entity.Store" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.etc.entity.Customer" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-  String path = request.getContextPath();
-  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-          + path + "/";
-
-%>
-
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>个人中心</title>
-  <meta name="description" content="这是一个 user 页面">
-  <meta name="keywords" content="user">
+  <title>Amaze后台管理系统模板HTML 404页面 - cssmoban </title>
+  <meta name="description" content="这是一个404页面">
+  <meta name="keywords" content="404">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <link rel="icon" type="image/png" href="/storeMange/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/storeMange/assets/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <script src="/customerMange/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script>
-
-    function check(){
-      if($('span').is('.wrong')){
-        alert("请填写正确信息");
-        return false;
-      }else{
-        return true;
-      }
-
-    }
-
-    $(function () {
-
-      var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,12}$/;
-
-      var tpatten = /^1[34578]\d{9}$/;
-      var rname= /^[\u4e00-\u9fa5]{2,12}$/;
-
-
-
-      // var text;  // 全局变量用于保存文本框的内容
-      // $("input:text").focus(function() {
-      //     text = $(this).val();
-      //     $(this).val("");
-      // });
-      // $("input:text").blur(function() {
-      //     $(this).val()!="" || $(this).val(text);
-      // });
-
-
-      $('.username','.telephone','.realname').on('focus',function(){
-
-        $(this).siblings('span').removeClass('right');
-        $(this).siblings('span').removeClass('wrong');
-
-
-
-      });
-
-
-
-
-      $('.username').on('blur', function () {
-        var usernameVal = $(this).val();
-        if (regex.test(usernameVal)) {
-          $(this).siblings('span').removeClass('wrong');
-          $(this).siblings('span').addClass('right');
-          $(this).siblings('span').html('');
-        } else if(usernameVal.length<4){
-          $(this).siblings('span').addClass('wrong');
-          $(this).siblings('span').html('用户名应为4-10位');
-
-        }else{
-          $(this).siblings('span').addClass('wrong');
-          $(this).siblings('span').html('用户名不能包含特殊字符');
-        }
-      });
-
-
-
-      $('.telephone').on('blur', function () {
-        var telephoneVal = $(this).val();
-        if (tpatten.test(telephoneVal)) {
-          $(this).siblings('span').removeClass('wrong');
-          $(this).siblings('span').addClass('right');
-          $(this).siblings('span').html('');
-        } else{
-          $(this).siblings('span').addClass('wrong');
-          $(this).siblings('span').html('请输入有效的手机号');
-        }
-      });
-
-      $('.realname').on('blur', function () {
-        var rnameVal = $(this).val();
-        if (rname.test(rnameVal)) {
-          $(this).siblings('span').removeClass('wrong');
-          $(this).siblings('span').addClass('right');
-          $(this).siblings('span').html('');
-        } else{
-          $(this).siblings('span').addClass('wrong');
-          $(this).siblings('span').html('请输入真实姓名');
-        }
-      });
-
-
-      <%--$("#username").blur(function() {--%>
-
-      <%--  $.post("/user?op=ajaxCheckName", "username=" + this.value, function(data) {--%>
-
-      <%--    if ($("#username").val()==${user}) {--%>
-      <%--      console.log("${user}");--%>
-      <%--    }else if (data == "true") {--%>
-      <%--        console.log("false");--%>
-      <%--      $("#show").addClass('wrong');--%>
-      <%--       $("#show")[0].innerHTML = "该用户名已存在，请重新输入！";--%>
-      <%--    } else {--%>
-      <%--      console.log("true");--%>
-      <%--      $("#show").removeClass('wrong');--%>
-
-
-      <%--      $("#show")[0].innerHTML = "";--%>
-
-      <%--    }--%>
-
-      <%--  });--%>
-
-      <%--});--%>
-
-    });
-  </script>
-  <style type="text/css">
-    span {
-      color: #aaa;
-      font-size: 10px;
-
-
-
-    }
-
-    .right {
-      color: green;
-
-
-    }
-
-    .wrong {
-      color: red;
-
-    }
-  </style>
-
+  <link rel="stylesheet" href="/storeMange/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/storeMange/assets/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/storeMange/css/qq.css"/>
 
 </head>
 <body>
-
-
-
-
-
-
-
-
-
 <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
@@ -178,7 +25,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong>${user}</strong> <small>的个人中心</small>
+    <strong>Amaze后台管理模板</strong> <small></small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -210,17 +57,13 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/user?op=query" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="/user?op=modify"><span class="am-icon-puzzle-piece"></span> 修改密码</a></li>
-          <li><a href="admin-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-          <li><a href="admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-          <li><a href="admin-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
-          <li><a href="admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
+          <li><a href="/user?op=query" class="am-cf"><span class="am-icon-check"></span>个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/user?op=modify"><span class="am-icon-puzzle-piece"></span>修改密码</a></li>
         </ul>
       </li>
-      <li><a href="admin-table.jsp"><span class="am-icon-table"></span> 表格</a></li>
-      <li><a href="admin-form.jsp"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-      <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+      <li><a href="/order?op=selbycustomer"><span class="am-icon-table"></span>订单查询</a></li>
+      <li><a href="/homepage/index.jsp"><span class="am-icon-table"></span>返回主页</a></li>
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -240,123 +83,106 @@
   <!-- sidebar end -->
 
   <!-- content start -->
-  <div class="admin-content">
-    <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
-    </div>
-
-    <hr/>
-
-    <div class="am-g">
-
-      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="am-g">
-              <div class="am-u-md-4">
-                <img class="am-img-circle am-img-thumbnail" src="http://amui.qiniudn.com/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" alt=""/>
-              </div>
-              <div class="am-u-md-8">
-                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                <form class="am-form">
-                  <div class="am-form-group">
-                    <input type="file" id="user-pic">
-                    <p class="am-form-help">请选择要上传的文件...</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="user-info">
-              <p>等级信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar" style="width: 60%"></div>
-              </div>
-              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
-            </div>
-            <div class="user-info">
-              <p>信用信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
-              </div>
-              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
-            </div>
-          </div>
-        </div>
-
+  <div class="qqBox">
+    <div class="BoxHead">
+      <div class="headImg">
+        <img src="img/6.jpg"/>
       </div>
-
-      <c:if test="${!empty message}">
-        <%--            <h1>${message}</h1>--%>
-        <script type="text/javascript">
-          alert("${message}");
-        </script>
-
-        <%session.setAttribute("message",""); %>
-
-
-      </c:if>
-
-      <% List<Customer> list= (List<Customer>) session.getAttribute("list");
-        for(Customer customer:list){
-
-      %>
-
-
-      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal" action="/user" method="get" onsubmit="return check()" >
-          <div class="am-form-group">
-            <label  class="am-u-sm-3 am-form-label">名称</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="username" placeholder="名称/Name" name="username" class="username" maxlength="10" readonly="true"  value="<%=customer.getUsername() %>">
-              <span ></span>
-              <div><span id="show" ></span></div>
-
+      <div class="internetName">恒宝</div>
+    </div>
+    <div class="context">
+      <div class="conLeft">
+        <ul>
+          <li>
+            <div class="liLeft"><img src="img/20170926103645_04.jpg"/></div>
+            <div class="liRight">
+              <span class="intername">前端交流群</span>
+              <span class="infor">厉害了</span>
             </div>
-          </div>
-
-          <div class="am-form-group">
-            <label  class="am-u-sm-3 am-form-label">真实姓名</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" class="realname" maxlength="10" value="<%=customer.getRealname() %>">
-              <br><span></span>
+          </li>
+          <li class="bg">
+            <div class="liLeft"><img src="img/20170926103645_19.jpg"/></div>
+            <div class="liRight">
+              <span  class="intername">赵鹏</span>
+              <span class="infor">[流泪]</span>
             </div>
-          </div>
-
-          <div class="am-form-group">
-            <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
-            <div class="am-u-sm-9">
-              <input type="tel" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone"  class="telephone" value="<%=customer.getTelepone()%>">
-              <br><span></span>
+          </li>
+          <li>
+            <div class="liLeft"><img src="img/20170926103645_27.jpg"/></div>
+            <div class="liRight">
+              <span  class="intername">web交流群</span>
+              <span class="infor">666</span>
             </div>
-          </div>
+          </li>
 
-          <div class="am-form-group">
-            <label class="am-u-sm-3 am-form-label">地址</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的地址" name="address" class="address" value="<%=customer.getAddress()%>">
-              <br><span></span>
-            </div>
+        </ul>
+      </div>
+      <div class="conRight">
+        <div class="Righthead">
+          <div class="headName">赵鹏</div>
+          <div class="headConfig">
+            <ul>
+              <li><img src="/storeMange/img/20170926103645_06.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_08.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_10.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_12.jpg"/></li>
+            </ul>
           </div>
+        </div>
+        <div class="RightCont">
+          <ul class="newsList">
 
-
-          <% }%>
-          <div class="am-form-group">
-            <div class="am-u-sm-9 am-u-sm-push-3">
-              <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->
-              <input type="hidden" class="am-btn am-btn-primary" name="op" value="update" />
-              <input type="submit" class="am-btn am-btn-primary" value="保存修改" />
-            </div>
+          </ul>
+        </div>
+        <div class="RightFoot">
+          <div class="emjon">
+            <ul>
+              <li><img src="/storeMange/img/em_02.jpg"/></li>
+              <li><img src="/storeMange/img/em_05.jpg"/></li>
+              <li><img src="/storeMange/img/em_07.jpg"/></li>
+              <li><img src="/storeMange/img/em_12.jpg"/></li>
+              <li><img src="/storeMange/img/em_14.jpg"/></li>
+              <li><img src="/storeMange/img/em_16.jpg"/></li>
+              <li><img src="/storeMange/img/em_20.jpg"/></li>
+              <li><img src="/storeMange/img/em_23.jpg"/></li>
+              <li><img src="/storeMange/img/em_25.jpg"/></li>
+              <li><img src="/storeMange/img/em_30.jpg"/></li>
+              <li><img src="/storeMange/img/em_31.jpg"/></li>
+              <li><img src="/storeMange/img/em_33.jpg"/></li>
+              <li><img src="/storeMange/img/em_37.jpg"/></li>
+              <li><img src="/storeMange/img/em_38.jpg"/></li>
+              <li><img src="/storeMange/img/em_40.jpg"/></li>
+              <li><img src="/storeMange/img/em_45.jpg"/></li>
+              <li><img src="/storeMange/img/em_47.jpg"/></li>
+              <li><img src="/storeMange/img/em_48.jpg"/></li>
+              <li><img src="/storeMange/img/em_52.jpg"/></li>
+              <li><img src="/storeMange/img/em_54.jpg"/></li>
+              <li><img src="/storeMange/img/em_55.jpg"/></li>
+            </ul>
           </div>
-        </form>
+          <div class="footTop">
+            <ul>
+              <li><img src="/storeMange/img/20170926103645_31.jpg"/></li>
+              <li class="ExP"><img src="/storeMange/img/20170926103645_33.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_35.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_37.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_39.jpg"/></li>
+              <li><img src="/storeMange/img/20170926103645_41.jpg" alt="" /></li>
+              <li><img src="/storeMange/img/20170926103645_43.jpg"/></li>
+              <li><img src="/storeMangex/img/20170926103645_45.jpg"/></li>
+            </ul>
+          </div>
+          <div class="inputBox">
+            <textarea id="dope" style="width: 99%;height: 75px; border: none;outline: none;" name="" rows="" cols=""></textarea>
+            <button class="sendBtn" >发送(s)</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="/storeMange/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/storeMange/js/chats.js"></script>
   <!-- content end -->
 
 </div>
@@ -373,11 +199,84 @@
 <script src="assets/js/polyfill/respond.min.js"></script>
 <script src="assets/js/amazeui.legacy.js"></script>
 <![endif]-->
-
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <!--<![endif]-->
 <script src="assets/js/app.js"></script>
+<script type="text/javascript">
+  var webSocket;
+
+  function send_msg() {
+
+    if (webSocket != null) {
+      var dope = document.getElementById("dope").value.trim();
+      if (dope == "") {
+        return;
+      }
+      webSocket.send(dope);
+      // 清除input框里的信息
+      document.getElementById("dope").value = "";
+    } else {
+      alert("您已掉线，请重新进入聊天室...");
+    }
+  };
+
+  function closeWs() {
+    webSocket.close();
+  };
+
+ window.onload= function initWebSocket() {
+    // var roomName = document.getElementById("input_roomName").value;
+    //订单号作为房间号测试先用1
+    var roomName=<%=request.getAttribute("oid")%>;
+    // 房间名不能为空
+    if (roomName == null || roomName == "") {
+      alert("请输入房间名");
+      return;
+    }
+    //var username = document.getElementById("username").value.trim();
+    var username='<%=request.getAttribute("ridername")%>';//有3个骑手顾客商家先测试1
+    if (username == "" || username==null) {
+      alert("用户名不能为空")
+      return;
+    }
+    if ("WebSocket" in window) {
+//            alert("您的浏览器支持 WebSocket!");
+      if (webSocket == null) {
+        var url = "ws://localhost:8080/webSocket/chat/" + roomName+"/"+username;
+        // 打开一个 web socket
+        webSocket = new WebSocket(url);
+      } else {
+        alert("您已进入聊天室...");
+      }
+
+      webSocket.onopen = function () {
+        alert("已进入聊天室，畅聊吧...");
+      };
+
+      webSocket.onmessage = function (evt) {
+        var msg_board = document.getElementsByClassName("newsList")[0];
+        var received_msg = evt.data;
+        var old_msg = msg_board.innerHTML;
+        msg_board.innerHTML = old_msg + received_msg + "<br>";
+        // 让滚动块往下移动
+        msg_board.scrollTop = msg_board.scrollTop + 40;
+
+      };
+
+      webSocket.onclose = function () {
+        // 关闭 websocket，清空信息板
+        alert("连接已关闭...");
+        webSocket = null;
+        document.getElementsByClassName("msg_board")[0].innerHTML = "";
+      };
+    }
+    else {
+      // 浏览器不支持 WebSocket
+      alert("您的浏览器不支持 WebSocket!");
+    }
+  }
+</script>
 </body>
 </html>

@@ -150,16 +150,14 @@
       <c:if test="${!empty msg}">
         <h1>${msg }</h1>
       </c:if>
-<% List<Store> list= (List<Store>) session.getAttribute("list");
-    for(Store store:list){
-%>
 
+      <c:forEach items="${list}" var="store">
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form class="am-form am-form-horizontal" action="/store" method="get" >
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">商店名称</label>
             <div class="am-u-sm-9">
-              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="<%=store.getShopname() %>">
+              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="${store.shopname}">
 
             </div>
           </div>
@@ -167,7 +165,7 @@
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">真实姓名</label>
             <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="<%=store.getRealname() %>">
+              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="${store.realname}">
 
             </div>
           </div>
@@ -175,14 +173,14 @@
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="<%=store.getTelephone()%>">
+              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${store.telephone}">
             </div>
           </div>
 
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">地址</label>
             <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="<%=store.getAddress()%>">
+              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="${store.address}">
             </div>
           </div>
 
@@ -190,10 +188,10 @@
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
             <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >123</textarea>
+              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >${store.intro}</textarea>
             </div>
           </div>
-<% }%>
+
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
               <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->
@@ -203,6 +201,7 @@
           </div>
         </form>
       </div>
+      </c:forEach>
     </div>
   </div>
   <!-- content end -->
