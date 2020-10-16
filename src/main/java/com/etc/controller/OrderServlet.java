@@ -87,6 +87,12 @@ public class OrderServlet extends HttpServlet {
                 throwables.printStackTrace();
             }
 
+        }else if("cancel_order".equals(op)){
+            try {
+               cancel(request,response);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -143,6 +149,12 @@ public class OrderServlet extends HttpServlet {
         int did= Integer.parseInt(request.getParameter("oid"));
         int result=orderDao.quxiao(did);
         response.sendRedirect("order?op=selbyshop");
+    }
+    public void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
+
+        int oid= Integer.parseInt(request.getParameter("oid"));
+        int result=orderDao.quxiao(oid);
+        response.sendRedirect("order?op=selbycustomer");
     }
 
     public void recorder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {

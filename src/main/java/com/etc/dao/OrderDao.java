@@ -66,7 +66,6 @@ public class OrderDao {
     }
     public int quxiao(int oid) {
         int count  =DBUtils.doUpdate("update  orderinfo set state=0 where oid=?; ",oid);
-        System.out.println("订单已完成");
         return count;
     }
     public int addOrder(int cid, int sid, int rid, String dlist, Date acceptdate, Date completedate, int state) {

@@ -73,12 +73,11 @@
   </div>
 </header>
 <script type="text/javascript">
-  function deldish(id) {
+  function cancel(id) {
 
     if (confirm("确定取消订单吗")) {
 
-      document.getElementById('delid').value = id;
-      document.getElementById('dish').submit();
+      window.location.href="/order?op=cancel_order&oid="+id;
     }
   }
 
@@ -204,7 +203,7 @@
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="cancel(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
                       <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick=""><span class="am-icon-trash-o"></span> 支付</button>
                       <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(${orderRider.oid})"><span class="am-icon-trash-o"></span>联系店家</button>
                     </div>
