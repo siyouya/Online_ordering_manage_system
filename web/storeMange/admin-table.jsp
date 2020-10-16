@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%@ page import="com.etc.entity.Disher" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -44,7 +45,13 @@
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
 <![endif]-->
-
+<%
+  List list = new ArrayList();
+  for (int i = 1; i < 6; i++) {
+    list.add(i);
+  }
+  session.setAttribute("xh", list);
+%>
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
     <strong>Amaze</strong> <small>后台管理模板</small>
@@ -224,16 +231,17 @@
             </tbody>
           </table>
           <div class="am-cf">
-            共 15 条记录
+            共 12 条记录
             <div class="am-fr">
               <ul class="am-pagination">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+                <li ><a href="/dish?op=bypage2&page=${nowpage-1}">«</a></li>
+                <li class="am-active"><a href="/dish?op=bypage2&page=${nowpage}">${nowpage}</a></li>
+
+                <c:forEach items="${xh}" var="i">
+                  <li><a href="/dish?op=bypage2&page=${nowpage+i}">${nowpage+i}</a></li>
+                </c:forEach>
+
+                <li><a href="/dish?op=bypage2&page=${nowpage+1}">»</a></li>
               </ul>
             </div>
           </div>

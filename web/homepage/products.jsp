@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%@ page import="com.etc.entity.Disher" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -49,6 +50,13 @@ http://www.templatemo.com/free-website-templates/417-grill
   }
 </script>
 <body>
+<%
+  List list = new ArrayList();
+  for (int i = 1; i < 6; i++) {
+    list.add(i);
+  }
+  session.setAttribute("xh", list);
+%>
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
@@ -199,7 +207,10 @@ http://www.templatemo.com/free-website-templates/417-grill
         <div class="col-md-12">
           <ul>
             <li><a href="/dish?op=bypage&page=${nowpage-1}">Previous</a></li>
-            <li><a>第 ${nowpage} 页</a></li>
+
+            <c:forEach items="${xh}" var="i">
+            <li><a href="/dish?op=bypage&page=${nowpage-1+i}">${nowpage-1+i}</a></li>
+            </c:forEach>
             <li><a href="/dish?op=bypage&page=${nowpage+1}">Next</a></li>
             <li><a>总共 ${pagenum} 页</a></li>
           </ul>
