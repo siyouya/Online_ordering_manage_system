@@ -198,12 +198,10 @@ http://www.templatemo.com/free-website-templates/417-grill
       <div class="row">
         <div class="col-md-12">
           <ul>
-            <li><a href="#">Previous</a></li>
-            <li><a href="/dish?op=bypage&page=1">1</a></li>
-            <li><a href="/dish?op=bypage&page=2">2</a></li>
-            <li><a href="/dish?op=bypage&page=3">3</a></li>
-            <li><a href="/dish?op=bypage&page=4">4</a></li>
-            <li><a href="/dish?op=bypage&page=5">Next</a></li>
+            <li><a href="/dish?op=bypage&page=${nowpage-1}">Previous</a></li>
+            <li><a>第 ${nowpage} 页</a></li>
+            <li><a href="/dish?op=bypage&page=${nowpage+1}">Next</a></li>
+            <li><a>总共 ${pagenum} 页</a></li>
           </ul>
         </div>
       </div>

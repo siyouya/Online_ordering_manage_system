@@ -27,6 +27,24 @@ public class DishDao {
     }
 
     /**
+     * 根据商家id查询菜品总数返回总数/12
+     * @param sid 商家id
+     */
+    public int querypagenum(int sid) throws SQLException {
+
+        int num = 0;
+
+        ResultSet rs = DBUtils.doQuery("SELECT COUNT(*) as num from dishes where sid=?",sid);
+        while(rs.next()){
+
+            num=rs.getInt("num");
+
+        }
+        num=num/12+1;
+        DBUtils.free(rs);
+        return num;
+    }
+    /**
      *
      * @param sid 店家id
      * @param page 分页查询

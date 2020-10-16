@@ -100,8 +100,11 @@ public class DishServlet extends HttpServlet {
         int sid=Integer.valueOf(request.getParameter("sid"));
         int page=Integer.valueOf(request.getParameter("page"));
         session.setAttribute("sid",sid);
+        int pagenum=dishDao.querypagenum(sid);
+        session.setAttribute("nowpage",1);
+        session.setAttribute("pagenum",pagenum);
         ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
-
+        session.setAttribute("nowpage",page);
 
 
         session.setAttribute("list", list);
@@ -119,9 +122,10 @@ public class DishServlet extends HttpServlet {
 
 
         int page=Integer.valueOf(request.getParameter("page"));
+        if (page<=0){page=1;}
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
         ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
-
+        session.setAttribute("nowpage",page);
 
 
         session.setAttribute("list", list);
