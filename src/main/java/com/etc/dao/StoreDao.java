@@ -84,14 +84,51 @@ public class StoreDao {
         }
         return list;
     }
+
+    /**
+     * 分页查询
+     * @param cid 根据客户id计算距离
+     * @param page 页数
+     * @return 查询结果
+     */
+    public List<Store> query(int page,int cid){
+
+        int num=9*(page-1);
+        ResultSet rs = DBUtils.doQuery("select * from suser limit ?,9",num);
+
+        List<Store> list   = new ArrayList<Store>();
+        try {
+            while (rs.next()) {
+
+                long dis=getDistanceByAdress(getUserAdressById(cid),rs.getString("address"));
+                System.out.println(dis);
+                list.add(new Store(
+                                rs.getInt("sid"),
+                                rs.getString("shopname"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("realname"),
+                                rs.getString("telephone"),
+                                Long.toString(dis),
+                                rs.getString("intro"),
+                                rs.getInt("state")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            DBUtils.free(rs);
+        }
+        return list;
+    }
     public List<Store> querynear(int cid){
         ResultSet rs = DBUtils.doQuery("select * from suser ");
 
         List<Store> list   = new ArrayList<Store>();
         try {
             while (rs.next()) {
-                System.out.println(getUserAdressById(cid));
-                System.out.println(rs.getString("address"));
+
                 long dis=getDistanceByAdress(getUserAdressById(cid),rs.getString("address"));
                 System.out.println(dis);
                 list.add(new Store(

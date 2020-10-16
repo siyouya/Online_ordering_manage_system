@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.etc.entity.Store" %><%--
   Created by IntelliJ IDEA.
@@ -21,7 +22,10 @@ http://www.templatemo.com/free-website-templates/417-grill
 $(document).ready(
         function (){$(".showsore").each(function (){
                   if ($(this).text()>8000){
-                    $(this).parent().hide();
+                    // $(this).text("超出距离");
+                    // $(this).show();
+                    $(this).parent().find("a").removeAttr('href');
+
                   }
 
                 });
@@ -54,7 +58,7 @@ $(document).ready(
   <div id="top-header">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 ">
           <div class="home-account">
             <a href="#">Home</a>
             <a href="../customerMange/customer-index.jsp">我的账户</a>
@@ -101,91 +105,91 @@ $(document).ready(
 </header>
 
 
-<div id="slider">
-  <div class="flexslider">
-    <ul class="slides">
-      <li>
-        <div class="slider-caption">
-          <h1>美味午餐</h1>
-          <p>因为你不会，所以你才会！
-            <br><br>我起飞了.</p>
-          <a href="/homepage/products.jsp">开始点餐</a>
-        </div>
-        <img src="/homepage/images/slide1.jpg" alt="" />
-      </li>
-      <li>
-        <div class="slider-caption">
-          <h1>冰淇淋菜单</h1>
-          <p>Nulla id iaculis ligula. Vivamus mattis quam eget urna tincidunt consequat. Nullam
-            <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat.</p>
-          <a href="single-post.jsp">查看更多</a>
-        </div>
-        <img src="/homepage/images/slide2.jpg" alt="" />
-      </li>
-      <li>
-        <div class="slider-caption">
-          <h1>大保健</h1>
-          <p>Maecenas fermentum est ut elementum vulputate. Ut vel consequat urna. Ut aliquet
-            <br><br>ornare massa, quis dapibus quam condimentum id.</p>
-          <a href="single-post.jsp">开始阅读</a>
-        </div>
-        <img src="/homepage/images/slide3.jpg" alt="" />
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="adcenter"><script src=""></script></div>
+<%--<div id="slider">--%>
+<%--  <div class="flexslider">--%>
+<%--    <ul class="slides">--%>
+<%--      <li>--%>
+<%--        <div class="slider-caption">--%>
+<%--          <h1>美味午餐</h1>--%>
+<%--          <p>因为你不会，所以你才会！--%>
+<%--            <br><br>我起飞了.</p>--%>
+<%--          <a href="/homepage/products.jsp">开始点餐</a>--%>
+<%--        </div>--%>
+<%--        <img src="/homepage/images/slide1.jpg" alt="" />--%>
+<%--      </li>--%>
+<%--      <li>--%>
+<%--        <div class="slider-caption">--%>
+<%--          <h1>冰淇淋菜单</h1>--%>
+<%--          <p>Nulla id iaculis ligula. Vivamus mattis quam eget urna tincidunt consequat. Nullam--%>
+<%--            <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat.</p>--%>
+<%--          <a href="single-post.jsp">查看更多</a>--%>
+<%--        </div>--%>
+<%--        <img src="/homepage/images/slide2.jpg" alt="" />--%>
+<%--      </li>--%>
+<%--      <li>--%>
+<%--        <div class="slider-caption">--%>
+<%--          <h1>大保健</h1>--%>
+<%--          <p>Maecenas fermentum est ut elementum vulputate. Ut vel consequat urna. Ut aliquet--%>
+<%--            <br><br>ornare massa, quis dapibus quam condimentum id.</p>--%>
+<%--          <a href="single-post.jsp">开始阅读</a>--%>
+<%--        </div>--%>
+<%--        <img src="/homepage/images/slide3.jpg" alt="" />--%>
+<%--      </li>--%>
+<%--    </ul>--%>
+<%--  </div>--%>
+<%--</div>--%>
+<%--<div class="adcenter"><script src=""></script></div>--%>
 
-<div id="services">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="heading-section">
+<%--<div id="services">--%>
+<%--  <div class="container">--%>
+<%--    <div class="row">--%>
+<%--      <div class="col-md-12">--%>
+<%--        <div class="heading-section">--%>
 
-          <img src="/homepage/images/under-heading.png" alt="" >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 col-sm-6">
-        <div class="service-item">
-          <div class="icon">
-            <i class="fa fa-pencil"></i>
-          </div>
-          <h4>点餐</h4>
-          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="service-item">
-          <div class="icon">
-            <i class="fa fa-bullhorn"></i>
-          </div>
-          <h4>促销活动</h4>
-          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="service-item">
-          <div class="icon">
-            <i class="fa fa-bell"></i>
-          </div>
-          <h4>优质服务</h4>
-          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="service-item">
-          <div class="icon">
-            <i class="fa fa-heart"></i>
-          </div>
-          <h4>包你满意</h4>
-          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%--          <img src="/homepage/images/under-heading.png" alt="" >--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--    <div class="row">--%>
+<%--      <div class="col-md-3 col-sm-6">--%>
+<%--        <div class="service-item">--%>
+<%--          <div class="icon">--%>
+<%--            <i class="fa fa-pencil"></i>--%>
+<%--          </div>--%>
+<%--          <h4>点餐</h4>--%>
+<%--          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="col-md-3 col-sm-6">--%>
+<%--        <div class="service-item">--%>
+<%--          <div class="icon">--%>
+<%--            <i class="fa fa-bullhorn"></i>--%>
+<%--          </div>--%>
+<%--          <h4>促销活动</h4>--%>
+<%--          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="col-md-3 col-sm-6">--%>
+<%--        <div class="service-item">--%>
+<%--          <div class="icon">--%>
+<%--            <i class="fa fa-bell"></i>--%>
+<%--          </div>--%>
+<%--          <h4>优质服务</h4>--%>
+<%--          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="col-md-3 col-sm-6">--%>
+<%--        <div class="service-item">--%>
+<%--          <div class="icon">--%>
+<%--            <i class="fa fa-heart"></i>--%>
+<%--          </div>--%>
+<%--          <h4>包你满意</h4>--%>
+<%--          <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--</div>--%>
 
 
 
@@ -203,19 +207,19 @@ $(document).ready(
     </div>
     <div class="row">
 <%--      商店开始--%>
-      <%
-        ArrayList<Store> list= (ArrayList<Store>) session.getAttribute("stores");
-        for(Store store:list){
-      %>
-  <div class="col-md-4 col-sm-6 "><div hidden class="showsore"><%=store.getAddress()%></div>
+
+  <c:forEach items="${stores}" var="store">
+  <div class="col-md-4 col-sm-6 ">
         <div class="blog-post">
           <div class="blog-thumb">
-            <img src="/homepage/images/blogpost<%=store.getSid()%>.jpg" alt="" />
+
+            <a href="/dish?op=begindish&sid=${store.sid}"> <img src="/homepage/images/blogpost1.jpg" alt="" /></a>
+            <div hidden class="showsore">${store.address}</div>
           </div>
           <div class="blog-content">
             <div class="content-show">
-              <h4><a href="/dish?op=begindish&sid=<%=store.getSid()%>"><%=store.getShopname()%></a></h4>
-              <span><%=store.getRealname()%></span>
+              <h4>${store.shopname}</h4>
+              <span>${store.realname}</span>
             </div>
             <div class="content-hide">
               <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu odio, sagittis vel diam in, malesuada malesuada risus. Aenean a sem leo. Nam ultricies dolor et mi tempor, non pulvinar felis sollicitudin.</p>
@@ -223,9 +227,7 @@ $(document).ready(
           </div>
         </div>
       </div>
-  <%
-    }
-  %>
+  </c:forEach>
 <%--      商店结尾--%>
     </div>
   </div>
