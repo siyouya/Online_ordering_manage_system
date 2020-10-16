@@ -16,6 +16,18 @@ Grill Template
 http://www.templatemo.com/free-website-templates/417-grill
 
 -->
+<script src="/homepage/js/vendor/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(
+        function (){$(".showsore").each(function (){
+                  if ($(this).text()>8000){
+                    $(this).parent().hide();
+                  }
+
+                });
+        });
+
+</script>
 <head>
   <meta charset="utf-8">
   <title>校园点餐系统</title>
@@ -31,7 +43,7 @@ http://www.templatemo.com/free-website-templates/417-grill
   <link rel="stylesheet" href="/homepage/css/flexslider.css">
   <link rel="stylesheet" href="/homepage/css/testimonails-slider.css">
 
-  <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+  <script src="/homepage/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -195,7 +207,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         ArrayList<Store> list= (ArrayList<Store>) session.getAttribute("stores");
         for(Store store:list){
       %>
-      <div class="col-md-4 col-sm-6" ><%=store.getAddress()%>
+  <div class="col-md-4 col-sm-6 "><div hidden class="showsore"><%=store.getAddress()%></div>
         <div class="blog-post">
           <div class="blog-thumb">
             <img src="/homepage/images/blogpost<%=store.getSid()%>.jpg" alt="" />

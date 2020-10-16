@@ -24,18 +24,24 @@ public class MapDistance {
         long dis = getDistance(startLonLat,endLonLat);
         return dis;
     }
+
+    /**
+     *  获取
+     * @param address 输入地址
+     * @return 返回经纬度
+     */
     public static String getLonLat(String address){
 
 //返回输入地址address的经纬度信息, 格式是 经度,纬度
         String queryUrl = "http://restapi.amap.com/v3/geocode/geo?key="+MAP_KEY+"&address="+address;
-        System.out.println(queryUrl);
+        //System.out.println(queryUrl);
         //String queryResult = getResponse(queryUrl); //高德接品返回的是JSON格式的字符串
         String queryResult = sendGetByApache(queryUrl);
-        System.out.println(queryResult);
+        //System.out.println(queryResult);
         JSONObject job = JSONObject.parseObject(queryResult);
         JSONObject jobJSON = JSONObject.parseObject(job.get("geocodes").toString().substring(1, job.get("geocodes").toString().length()-1));
         String DZ = jobJSON.get("location").toString();
-        System.out.println("经纬度："+DZ);
+        //System.out.println("经纬度："+DZ);
         return DZ;
     }
 
@@ -88,7 +94,7 @@ public class MapDistance {
         JSONArray ja = job.getJSONArray("results");
         JSONObject jobO = JSONObject.parseObject(ja.getString(0));
         result = Long.parseLong(jobO.get("distance").toString());
-        System.out.println("距离2："+result);
+        System.out.println("距离："+result);
         return result;
     }
     /**
