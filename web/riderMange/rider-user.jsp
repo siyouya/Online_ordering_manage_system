@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
 <%@ page import="com.etc.entity.Store" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.etc.entity.Rider" %>
@@ -66,16 +67,13 @@
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/rider?op=query&rid=<%=session.getAttribute("rid")%>" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="rider-help.jsp"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-          <li><a href="rider-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-          <li><a href="rider-log.jsp"><span class="am-icon-calendar"></span> 系统日志</a></li>
-          <li><a href="rider-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
+          <li><a href="/rider?op=query" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/rider?op=modifypas"><span class="am-icon-puzzle-piece"></span>修改密码</a></li>
         </ul>
       </li>
-      <li><a href="rider-table.jsp"><span class="am-icon-table"></span> 表格</a></li>
-      <li><a href="rider-form.jsp"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-      <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+      <li><a href="/order?op=recorder"><span class="am-icon-table"></span> 接单</a></li>
+      <li><a href="/order?op=run_order"><span class="am-icon-pencil-square-o"></span> 跑单</a></li>
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -145,32 +143,23 @@
         </div>
 
       </div>
-
-<% List<Rider> list= (List<Rider>) session.getAttribute("list");
-    for(Rider rider:list){
-
-%>
+      <c:forEach items="${list}" var="rider">
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form class="am-form am-form-horizontal" action="/rider" method="get" >
-
-
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">真实姓名</label>
             <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="<%=rider.getRealname() %>">
+              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="${rider.realname}">
             </div>
           </div>
-
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="<%=rider.getTelephone()%>">
+              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${rider.telephone}">
             </div>
           </div>
-
-
-<% }%>
+          </c:forEach>
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
               <!-- <button type="button" class="am-btn am-btn-primary">保存修改</button> -->

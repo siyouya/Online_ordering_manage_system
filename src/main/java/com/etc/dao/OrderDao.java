@@ -13,10 +13,7 @@ public class OrderDao {
     public List<OrderRider> query(int sid,String way) throws SQLException {
         ResultSet rs=null;
         ArrayList<OrderRider> list=new ArrayList<OrderRider>();
-        if ("customer".equals(way)){
-        rs= DBUtils.doQuery("select * from orderinfo where cid=?",sid);
-        }else {
-            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,orderinfo.completedate,cuser.realname,cuser.telephone,cuser.address,ruser.realname as riderrealname,ruser.telephone as ridertelephone from cuser,ruser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid=ruser.rid  and orderinfo.sid=?  order by orderinfo.oid desc ",sid);}
+            rs = DBUtils.doQuery("select orderinfo.oid,orderinfo.state,orderinfo.acceptdate,orderinfo.completedate,cuser.realname,cuser.telephone,cuser.address,ruser.realname as riderrealname,ruser.telephone as ridertelephone from cuser,ruser,orderinfo where    orderinfo.cid=cuser.cid and orderinfo.rid=ruser.rid  and orderinfo.sid=?  order by orderinfo.oid desc ",sid);
         while(rs.next()){
             int oid=rs.getInt("oid");
             int state=rs.getInt("state");

@@ -86,11 +86,7 @@
   function chat(id) {
 
     if (confirm("联系")) {
-      document.getElementById('op').value = "store_create_chat";
-      document.getElementById('delid').value = id;
-      var form2 = document.getElementById('dish');
-      form2.action = "/creatweb";
-      form2.submit();
+      window.location.href="/creatweb?op=customer_create_chat&oid="+id;
     }
   }
 
@@ -100,22 +96,17 @@
   <!-- sidebar start -->
   <div class="admin-sidebar">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="admin-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="customer-index.jsp"><span class="am-icon-home"></span> 首页</a></li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="/store?op=query" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="/store?op=modifypas"><span class="am-icon-puzzle-piece"></span> 修改密码</a></li>
-          <li><a href="../storeMange/admin-gallery.jsp"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-          <li><a href="../storeMange/admin-404.jsp"><span class="am-icon-bug"></span> 404</a></li>
+          <li><a href="/user?op=query" class="am-cf"><span class="am-icon-check"></span>个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="/user?op=modify"><span class="am-icon-puzzle-piece"></span>修改密码</a></li>
         </ul>
       </li>
-      <li><a href="/dish?op=select"><span class="am-icon-table"></span> 菜单</a></li>
-      <li><a href="/order?op=selbyshop"><span class="am-icon-pencil-square-o"></span> 订单</a></li>
-      <li><a href="../admin-chat.jsp"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-      <li><a href="/creatweb"><span class="am-icon-pencil-square-o"></span>在线聊天</a></li>
-      <li><a href="/login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
-
+      <li><a href="/order?op=selbycustomer"><span class="am-icon-table"></span>订单查询</a></li>
+      <li><a href="/homepage/index.jsp"><span class="am-icon-table"></span>返回主页</a></li>
+      <li><a href="/login.jsp"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -169,9 +160,8 @@
 
     <div class="am-g">
       <div class="am-u-sm-12">
-        <form class="am-form" id="dish" method="post" action="/order">
-          <input type="text"  class="am-hide" id="delid" name="oid" >
-
+        <form class="am-form" id="order" method="post" action="/order">
+          <input type="text"  class="am-hide" id="oid" name="oid" >
           <input type="text"  class="am-hide" id="op" name="op" value="quxiao">
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -215,7 +205,7 @@
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
                       <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 取消</button>
-                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${orderRider.oid})"><span class="am-icon-trash-o"></span> 支付</button>
+                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick=""><span class="am-icon-trash-o"></span> 支付</button>
                       <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="chat(${orderRider.oid})"><span class="am-icon-trash-o"></span>联系店家</button>
                     </div>
                   </div>

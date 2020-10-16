@@ -112,7 +112,8 @@ public class CreatWebServlet extends HttpServlet {
 
         HttpSession session=request.getSession();
         //顾客点击联系创建聊天窗口根据订单编号，房间号oid，
-        int oid=(int)request.getAttribute("oid");
+        int oid=Integer.parseInt(request.getParameter("oid"));
+        System.out.println(oid);
         //获取顾客的名字，先获取id;
         request.setAttribute("oid",oid);
         int cid=Integer.parseInt(session.getAttribute("cid").toString());
@@ -120,10 +121,10 @@ public class CreatWebServlet extends HttpServlet {
         List<Customer> list=customerDao.querynamebyid(cid);
         for(Customer customer:list){
             //存好cid
-            request.setAttribute("name",customer.getRealname());
+            request.setAttribute("customername",customer.getRealname());
         }
         //转发
-        request.getRequestDispatcher("riderMange/user-chat.jsp").forward(request, response);
+        request.getRequestDispatcher("customerMange/customer-chat.jsp").forward(request, response);
 
         //骑手已经在订单编号为房间的房间中可以聊天
 
