@@ -171,7 +171,7 @@
               <td>${orderRider.sid.shopname}</td>
               <td>${orderRider.sid.address}</td>
               <td>${orderRider.cid.address}</td>
-              <td>${orderRider.cid.telephone}</td>
+              <td>${orderRider.cid.telepone}</td>
               <td>
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
