@@ -1,9 +1,8 @@
 package com.etc.controller;
 
 import com.etc.dao.DishDao;
-import com.etc.entity.Disher;
-
-
+import com.etc.dao.DishImgDao;
+import com.etc.entity.DishImg;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -83,9 +82,38 @@ public class DishServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }else if("keep".equals(op)){
+            keep(request,response);
+        }else if("add_img".equals(op)){
+            addImg(request,response);
         }
 
     }
+    private void addImg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session=request.getSession();
+
+        int did=Integer.parseInt(session.getAttribute("did").toString());
+        String path= (String) request.getAttribute("path");
+        System.out.println(path);
+        dishDao.addImg(did,path);
+        //初始化
+        String inidid=null;
+        session.setAttribute("did",inidid);
+        response.sendRedirect("dish?op=select");
+
+    }
+
+
+
+    private void keep(HttpServletRequest request, HttpServletResponse response) throws IOException {
+       int did=Integer.parseInt(request.getParameter("did_img"));
+       HttpSession session=request.getSession();
+       session.setAttribute("did",did);
+       System.out.println(did);
+       response.sendRedirect("dish?op=select");
+
+    }
+
     public void showDish(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         HttpSession session   = request.getSession();
 
@@ -95,7 +123,8 @@ public class DishServlet extends HttpServlet {
         int pagenum=dishDao.querypagenum(sid);
         session.setAttribute("nowpage",1);
         session.setAttribute("pagenum",pagenum);
-        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
+        DishImgDao dishImgDao=new DishImgDao();
+        ArrayList<DishImg> list= (ArrayList<DishImg>) dishImgDao.showImg(sid,page);
         session.setAttribute("nowpage",page);
 
 
@@ -115,7 +144,8 @@ public class DishServlet extends HttpServlet {
         int pagenum=dishDao.querypagenum(sid);
         session.setAttribute("nowpage",1);
         session.setAttribute("pagenum",pagenum);
-        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
+        DishImgDao dishImgDao=new DishImgDao();
+        ArrayList<DishImg> list= (ArrayList<DishImg>) dishImgDao.showImg(sid,page);
         session.setAttribute("nowpage",page);
 
 
@@ -132,7 +162,8 @@ public class DishServlet extends HttpServlet {
         int page=Integer.valueOf(request.getParameter("page"));
         if (page<=0){page=1;}
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
-        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
+        DishImgDao dishImgDao=new DishImgDao();
+        ArrayList<DishImg> list= (ArrayList<DishImg>) dishImgDao.showImg(sid,page);
         session.setAttribute("nowpage",page);
 
 
@@ -152,7 +183,8 @@ public class DishServlet extends HttpServlet {
         int page=Integer.valueOf(request.getParameter("page"));
         if (page<=0){page=1;}
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
-        ArrayList<Disher> list= (ArrayList<Disher>) dishDao.query(sid,page);
+        DishImgDao dishImgDao=new DishImgDao();
+        ArrayList<DishImg> list= (ArrayList<DishImg>) dishImgDao.showImg(sid,page);
         session.setAttribute("nowpage",page);
 
 
@@ -205,7 +237,7 @@ public class DishServlet extends HttpServlet {
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
         HttpSession  session   = request.getSession();
-        int did= Integer.parseInt(request.getParameter("did"));
+        int did= Integer.parseInt(request.getParameter("did_img"));
         String dishname=request.getParameter("dishname");
         String number=request.getParameter("number");
         String rmaterial=request.getParameter("rmaterial");

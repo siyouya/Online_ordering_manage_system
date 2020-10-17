@@ -29,6 +29,9 @@ public class UploadServlet extends HttpServlet {
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
     /**
      * 上传数据及保存文件
      */
@@ -82,8 +85,9 @@ public class UploadServlet extends HttpServlet {
                         item.write(storeFile);
                         request.setAttribute("message",
                                 "文件上传成功!");
-                        request.setAttribute("path",
-                                "./upload/"+fileName);
+                        String path="./../upload/"+fileName;
+                        request.setAttribute("path", path);
+                        request.getRequestDispatcher("/dish?op=add_img").forward(request,response);
                     }
                 }
             }
@@ -92,7 +96,5 @@ public class UploadServlet extends HttpServlet {
                     "错误信息: " + ex.getMessage());
         }
 
-        getServletContext().getRequestDispatcher("//testchat/upload.jsp").forward(
-                request, response);
     }
 }

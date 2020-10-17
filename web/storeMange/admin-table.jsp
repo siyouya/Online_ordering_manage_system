@@ -99,12 +99,22 @@
     var fa=document.getElementById(id);
     var chi=fa.childNodes;
 
-    document.getElementById('did2').value=chi[13].innerHTML;
-    document.getElementById('dishname2').value=chi[3].innerHTML;
-    document.getElementById('number2').value=chi[5].innerHTML;
-    document.getElementById('rmaterial2').value=chi[7].innerHTML;
+    document.getElementById('dishname2').value=chi[5].innerHTML;
+    document.getElementById('number2').value=chi[7].innerHTML;
+    document.getElementById('rmaterial2').value=chi[11].innerHTML;
     document.getElementById('price2').value=chi[9].innerHTML;
+    document.getElementById('did2').value=chi[3].innerHTML;
   }
+  function for_img(id) {
+    var fa=document.getElementById(id);
+    var chi=fa.childNodes;
+    var img=chi[3].innerHTML;
+    window.location.href = "/dish?op=keep&did_img="+img;
+  }
+
+
+
+
   function for4() {
     $('form3').submit;
   }
@@ -123,6 +133,37 @@
     }
     window.location.href = "/dish?op=mutildel&tag=" + result;
   }
+  function getFileUrl(sourceId) {
+    var url;
+    if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+      url = document.getElementById(sourceId).value;
+    } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+      url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+      url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    }
+
+    return url;
+  }
+  function preImg(sourceId, targetId) {
+    var url = getFileUrl(sourceId);
+
+    var imgPre = document.getElementById(targetId);
+    imgPre.src = url;
+    //setTimeout(document.getElementById('upimag').submit(),1000);
+    document.getElementById('upload_img').submit();
+    window.location.reload();
+  }
+
+  function sub_img(){
+    $('upload_img').submit;
+  }
+  $(document).ready(function(){
+      <c:if test="${!empty did}">
+          document.getElementById('open').click();
+      </c:if>
+  });
+
 </script>
 <div class="am-cf admin-main">
   <!-- sidebar start -->
@@ -202,26 +243,36 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
             <tr>
-              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">菜名</th><th class="table-type">剩余</th><th class="table-author">价格</th><th class="table-date">原料</th><th class="table-set">操作</th>
+              <th class="table-check"><input type="checkbox" /></th>
+              <th class="table-id">ID</th><th class="table-title">菜名</th>
+              <th class="table-type">剩余</th>
+              <th class="table-author">价格</th>
+              <th class="table-date">原料</th>
+              <th class="table-date">图片</th>
+              <th class="table-date">修改/上传图片</th>
+              <th class="table-set">操作</th>
             </tr>
             </thead>
+            <button type="button" style="display: none"  data-toggle="modal"  data-target="#add_img" id="open" ><span class="am-icon-pencil-square-o"></span> 添加图片打开模态框</button>
             <tbody>
 
             <c:forEach items="${list}" var="dish">
-            <tr id="tr${dish.did}">
-              <td><input type="checkbox" class="checkb" value="${dish.did}"/></td>
-              <td>${dish.did}</td>
-              <td>${dish.dishname}</td>
-              <td>${dish.number}</td>
-              <td>${dish.price}</td>
-              <td>${dish.rmaterial}</td>
-              <td hidden>${dish.did}</td>
+            <tr id="tr${dish.did.did}">
+              <td><input type="checkbox" class="checkb" value="${dish.did.did}"/></td>
+              <td>${dish.did.did}</td>
+              <td>${dish.did.dishname}</td>
+              <td>${dish.did.number}</td>
+              <td>${dish.did.price}</td>
+              <td>${dish.did.rmaterial}</td>
+              <td><img src="${dish.imgurl}" width="50" height="50"></td>
+              <td hidden>${dish.did.did}</td>
               <td>
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for3('tr${dish.did}')" data-toggle="modal"  data-target="#myModal2" ><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs"><a href="/dish?op=sellout&did=${dish.did}"><span class="am-icon-copy" id="sellout"></span> 售罄</a></button>
-                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${dish.did})"><span class="am-icon-trash-o"></span> 删除</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for3('tr${dish.did.did}')" data-toggle="modal"  data-target="#myModal2" ><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="for_img('tr${dish.did.did}')" ><span class="am-icon-pencil-square-o"></span> 添加图片</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs"><a href="/dish?op=sellout&did=${dish.did.did}"><span class="am-icon-copy" id="sellout"></span> 售罄</a></button>
+                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="deldish(${dish.did.did})"><span class="am-icon-trash-o"></span> 删除</button>
                   </div>
                 </div>
               </td>
@@ -351,10 +402,43 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
       </div>
-
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="add_img">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- 模态框头部 -->
+      <div class="modal-header">
+        <h4 class="modal-title">上传图片</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- 模态框主体 -->
+      <div class="modal-body">
+        <div class="container">
+          <form method="post" action="/upload" enctype="multipart/form-data" id="upload_img" >
+            <div class="form-group">
+              <label for="dishname">上传的文件</label>
+              <input type="file" name="uploadFile" id="imgUp" onclick="preImg(this.id,'imgPre');" />
+            </div>
+            <button type="botton" class="btn btn-primary" onclick="sub_img()">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- 模态框底部 -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <footer>
   <hr>

@@ -91,4 +91,9 @@ public class DishDao {
         int count =DBUtils.doUpdate("update dishes set number=number-1 WHERE dishname=?",dishname);
         return count;
     }
+
+    public int addImg(int did,String path) {
+        int count  =DBUtils.doUpdate("insert into  dish_img (did,imgurl) values (?,?); ",did,path);
+        return count;
+    }
 }
