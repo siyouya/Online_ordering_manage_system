@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -184,17 +185,17 @@ http://www.templatemo.com/free-website-templates/417-grill
       <div class="col-md-3 col-sm-6 mix portfolio-item ">
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
-            <img src="images/product1.jpg" alt="" />
+            <img src="${dish.imgurl}" height="200" width="300" alt="" />
             <div class="hover">
               <div class="hover-iner">
-                <a  onclick="adddish('${dish.dishname}','${dish.price}')"><img src="images/open-icon.png" alt="" /></a>
-                <span>${dish.dishname}</span>
+                <a  onclick="adddish('${dish.did.dishname}','${dish.did.price}')"><img src="images/open-icon.png" alt="" /></a>
+                <span>${dish.did.dishname}</span>
               </div>
             </div>
           </div>
           <div class="label-text">
-            <h3><a href="single-post.html">${dish.dishname}</a></h3>
-            <span class="text-category">￥${dish.price}</span>
+            <h3><a href="single-post.html">${dish.did.dishname}</a></h3>
+            <span class="text-category">￥${dish.did.price}</span>
           </div>
         </div>
       </div>

@@ -29,6 +29,31 @@
   <link rel="stylesheet" href="assets/css/admin.css">
   <script src="assets/js/jquery.min.js"></script>
 </head>
+<script type="javascript">
+  function getFileUrl(sourceId) {
+    var url;
+    if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+      url = document.getElementById(sourceId).value;
+    } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+      url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+      url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    }
+    url = document.getElementById(sourceId).value;
+    alert(url);
+    return url;
+  }
+  function preImg(sourceId, targetId) {
+    var url = getFileUrl(sourceId);
+
+    var imgPre = document.getElementById(targetId);
+    imgPre.src = url;
+    //setTimeout(document.getElementById('upimag').submit(),1000);
+    document.getElementById('upload_img').submit();
+    window.location.reload();
+  }
+</script>
+
 <body>
 <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
@@ -105,28 +130,28 @@
     <hr/>
 
     <div class="am-g">
-
+      <c:forEach items="${list}" var="store">
       <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
         <div class="am-panel am-panel-default">
           <div class="am-panel-bd">
             <div class="am-g">
               <div class="am-u-md-4">
-                <img class="am-img-circle am-img-thumbnail" src="http://amui.qiniudn.com/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" alt=""/>
+                <img class="am-img-circle am-img-thumbnail" src="${store.imgurl}" alt=""/>
               </div>
-              <div class="am-u-md-8">
+              <div class="am-u-md-8" >
                 <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                <form class="am-form">
+                <form class="am-form" method="post" action="/upload_shop" enctype="multipart/form-data" id="upload_img">
                   <div class="am-form-group">
-                    <input type="file" id="user-pic">
+                    <input type="file" name="uploadFile" id="imgUp" onclick="preImg(this.id,'imgPre');" />
                     <p class="am-form-help">请选择要上传的文件...</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                    <input type="submit"  value="上传图片" />
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-
+        </c:forEach >
         <div class="am-panel am-panel-default">
           <div class="am-panel-bd">
             <div class="user-info">
@@ -157,7 +182,7 @@
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">商店名称</label>
             <div class="am-u-sm-9">
-              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="${store.shopname}">
+              <input type="text" id="shopname" placeholder="商店名称/ShopName" name="shopname" value="${store.sid.shopname}">
 
             </div>
           </div>
@@ -165,7 +190,7 @@
           <div class="am-form-group">
             <label  class="am-u-sm-3 am-form-label">真实姓名</label>
             <div class="am-u-sm-9">
-              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="${store.realname}">
+              <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" value="${store.sid.realname}">
 
             </div>
           </div>
@@ -173,14 +198,14 @@
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${store.telephone}">
+              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${store.sid.telephone}">
             </div>
           </div>
 
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">地址</label>
             <div class="am-u-sm-9">
-              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="${store.address}">
+              <input type="text" id="address" placeholder="输入你的商家地址" name="address" value="${store.sid.address}">
             </div>
           </div>
 
@@ -188,7 +213,7 @@
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
             <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >${store.intro}</textarea>
+              <textarea class="" rows="5" id="user-intro" placeholder="输入商家简介" name="intro" >${store.sid.intro}</textarea>
             </div>
           </div>
 

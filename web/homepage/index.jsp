@@ -213,13 +213,13 @@ $(document).ready(
         <div class="blog-post">
           <div class="blog-thumb">
 
-            <a href="/dish?op=begindish&sid=${store.sid}&page=1"> <img src="/homepage/images/blogpost1.jpg" alt="" /></a>
-            <div hidden class="showsore">${store.address}</div>
+            <a href="/dish?op=begindish&sid=${store.sid.sid}&page=1"> <img src="${store.imgurl} "width="400" height="300" alt="" /></a>
+            <div hidden class="showsore">${store.sid.address}</div>
           </div>
           <div class="blog-content">
             <div class="content-show">
-              <h4>${store.shopname}</h4>
-              <span>${store.realname}</span>
+              <h4>${store.sid.shopname}</h4>
+              <span>${store.sid.realname}</span>
             </div>
             <div class="content-hide">
               <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu odio, sagittis vel diam in, malesuada malesuada risus. Aenean a sem leo. Nam ultricies dolor et mi tempor, non pulvinar felis sollicitudin.</p>

@@ -290,7 +290,7 @@
       <c:if test="${!empty message}">
         <%--            <h1>${message}</h1>--%>
         <script type="text/javascript">
-          alert("${message}");
+
         </script>
 
         <%session.setAttribute("message",""); %>
@@ -327,7 +327,7 @@
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="tel" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone"  class="telephone" value="<%=customer.getTelepone()%>">
+              <input type="text" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone"  class="telephone" value="<%=customer.getTelepone()%>">
               <br><span></span>
             </div>
           </div>

@@ -30,4 +30,10 @@ public class DishImgDao {
         DBUtils.free(rs);
         return list;
     }
+
+    public int deldish(String did){
+        int id=Integer.parseInt(did);
+        int count  = DBUtils.doUpdate("delete from dish_img where did =?",id);
+        return count;
+    }
 }

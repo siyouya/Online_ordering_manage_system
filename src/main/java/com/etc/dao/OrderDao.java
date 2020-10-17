@@ -156,8 +156,8 @@ public class OrderDao {
     }
 
     //修改订单状态 1代表未完成 2代表完成 默认为1
-    public int modify_state(int oid) {
-        int count  =DBUtils.doUpdate("update  orderinfo set state=2 where oid=?; ",oid);
+    public int modify_state(int oid,Date date) {
+        int count  =DBUtils.doUpdate("update  orderinfo set  state=2 ,completedate=? where oid=?; ",date,oid);
         return count;
     }
 

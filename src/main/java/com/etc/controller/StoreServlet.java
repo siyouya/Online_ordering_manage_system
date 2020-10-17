@@ -1,7 +1,9 @@
 package com.etc.controller;
 
 import com.etc.dao.StoreDao;
+import com.etc.dao.StoreImgDao;
 import com.etc.entity.Store;
+import com.etc.entity.StoreImg;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,16 +55,27 @@ public class StoreServlet extends HttpServlet {
 			 } catch (SQLException throwables) {
 				 throwables.printStackTrace();
 			 }
+		 }else if("add_img".equals(op)){
+			 addImg(request,response);
 		 }
 
 	}
 
+	private void addImg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session   = request.getSession();
+		int sid=Integer.valueOf(session.getAttribute("sid").toString());
+		String path=(String)request.getAttribute("path");
+		StoreImgDao storeImgDao=new StoreImgDao();
+		storeImgDao.addImg(sid,path);
+		response.sendRedirect("/store?op=query");
+	}
+
 	public void query(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 		HttpSession session   = request.getSession();
-		StoreDao storeDao=new StoreDao();
-		int sid=Integer.valueOf(session.getAttribute("sid").toString());
 
-		List<Store> list   = storeDao.query(sid);
+		int sid=Integer.valueOf(session.getAttribute("sid").toString());
+		StoreImgDao storeImgDao=new StoreImgDao();
+		List<StoreImg> list   = storeImgDao.showImg(sid);
 		session.setAttribute("list", list);
 		response.sendRedirect("../storeMange/admin-user.jsp");
 		//request.getRequestDispatcher("../storeMange/admin-index.jsp").forward(request, response);

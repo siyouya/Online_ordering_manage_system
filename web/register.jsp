@@ -223,7 +223,7 @@
     </form><!-- form -->
     <div class="button">
       <span class="help-block u-errormessage" >&nbsp;</span>
-      <a href="login.html">登入</a>
+      <a href="login.jsp">登入</a>
     </div> <!-- button -->
   </section><!-- content -->
 </div>

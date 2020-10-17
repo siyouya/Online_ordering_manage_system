@@ -47,7 +47,7 @@ public class DoRegServlet extends HttpServlet {
 			int result=storeDao.reg(shopname,username,password,realname,telephone,address);
 			if (result>0){
 				session.setAttribute("msg", "cg");
-				request.getRequestDispatcher("../register.jsp").forward(request, response);
+				request.getRequestDispatcher("../login.jsp").forward(request, response);
 			} else{
 				System.out.println(result);
 				session.setAttribute("msg", "cg");
@@ -58,7 +58,7 @@ public class DoRegServlet extends HttpServlet {
 			int result= riderDao.reg(username,password,realname,telephone);
 			if (result>0){
 				session.setAttribute("msg", "cg");
-				request.getRequestDispatcher("../register.jsp").forward(request, response);
+				request.getRequestDispatcher("../login.jsp").forward(request, response);
 			} else{
 				System.out.println(result);
 				session.setAttribute("msg", "cg");

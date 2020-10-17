@@ -199,6 +199,8 @@ public class DishServlet extends HttpServlet {
 
         String id=request.getParameter("delid");
         HttpSession  session   = request.getSession();
+        DishImgDao dishImgDao=new DishImgDao();
+        dishImgDao.deldish(id);
         int count=dishDao.deldish(id);
 
         if(count>0){

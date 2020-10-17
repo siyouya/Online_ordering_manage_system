@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -102,7 +103,8 @@ public class OrderServlet extends HttpServlet {
         String tag=request.getParameter("tag");
         int sid=Integer.valueOf(session.getAttribute("sid").toString());
         int cid=Integer.valueOf(session.getAttribute("cid").toString());
-        Date date = new Date();
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+        Date date = new Date(System.currentTimeMillis());
         orderDao.addOrder(cid,sid,tag,date);
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
@@ -199,8 +201,9 @@ public class OrderServlet extends HttpServlet {
 
         //根据订单oid修改订单state
         int oid= Integer.parseInt(request.getParameter("roid"));
-
-        int result=orderDao.modify_state(oid);
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+        Date date = new Date(System.currentTimeMillis());
+        int result=orderDao.modify_state(oid,date);
 
         response.sendRedirect("order?op=run_order");
         //request.getRequestDispatcher().forward(request, response);

@@ -3,7 +3,7 @@ package com.etc.controller;
 import com.etc.dao.CustomerDao;
 import com.etc.dao.RiderDao;
 import com.etc.dao.StoreDao;
-import com.etc.entity.Store;
+import com.etc.entity.StoreImg;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,12 +35,12 @@ public class DologinServlet extends HttpServlet {
 			StoreDao dao=new StoreDao();
 			int result=customerDao.checklogin(username,password);
 			if (result>0){
-				ArrayList<Store> list=new ArrayList<Store>();
+				ArrayList<StoreImg> list=new ArrayList<StoreImg>();
 
 
 				session.setAttribute("user", username);
 				session.setAttribute("cid", result);
-				list= (ArrayList<Store>) dao.query(1,result);
+				list= (ArrayList<StoreImg>) dao.query(1,result);
 				session.setAttribute("stores",list);
 				request.getRequestDispatcher("../homepage/index.jsp").forward(request, response);
 			} else{

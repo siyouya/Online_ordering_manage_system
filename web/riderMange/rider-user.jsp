@@ -156,7 +156,7 @@
           <div class="am-form-group">
             <label class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="email" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${rider.telephone}">
+              <input type="text" id="telephone" placeholder="输入你的电话号码 / Telephone" name="telephone" value="${rider.telephone}">
             </div>
           </div>
           </c:forEach>
