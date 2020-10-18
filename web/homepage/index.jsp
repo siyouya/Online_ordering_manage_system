@@ -78,7 +78,7 @@ $(document).ready(
       <div class="row">
         <div class="col-md-3">
           <div class="logo">
-            <a href="#"><img src="images/logo.png" title="Grill Template" alt="Grill Website Template" ></a>
+            <a href="#"><img src="/homepage/images/logo.png" title="Grill Template" alt="Grill Website Template" ></a>
           </div>
         </div>
         <div class="col-md-6">
@@ -86,7 +86,7 @@ $(document).ready(
             <ul>
               <li><a href="index.jsp">Home</a></li>
               <li><a href="about-us.jsp">关于</a></li>
-              <li><a href="products.jsp">菜单</a></li>
+              <li><a href="#">菜单</a></li>
               <li><a href="contact-us.jsp">联系我们</a></li>
             </ul>
           </div>

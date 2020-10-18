@@ -60,8 +60,9 @@ public class DologinServlet extends HttpServlet {
 				session.setAttribute("sid", result);
 				request.getRequestDispatcher("../storeMange/admin-index.jsp").forward(request, response);
 			} else{
-				System.out.println(result);
-				session.setAttribute("msg", "成功");
+				session.setAttribute("msg", "登入失败，请输入正确的账号密码");
+//				 request.getRequestDispatcher("../login.jsp").forward(request, response);
+				response.sendRedirect("../login.jsp");
 			}
 
 		}else if ("rider".equals(profession)) {
@@ -72,8 +73,9 @@ public class DologinServlet extends HttpServlet {
 				session.setAttribute("rid", result);
 				request.getRequestDispatcher("../riderMange/rider-index.jsp").forward(request, response);
 			} else{
-				System.out.println(result);
-				session.setAttribute("msg", "成功");
+				session.setAttribute("msg", "登入失败，请输入正确的账号密码");
+//				 request.getRequestDispatcher("../login.jsp").forward(request, response);
+				response.sendRedirect("../login.jsp");
 			}
 		}
 

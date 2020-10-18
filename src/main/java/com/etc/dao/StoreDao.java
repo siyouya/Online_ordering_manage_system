@@ -94,7 +94,7 @@ public class StoreDao {
     public List<StoreImg> query(int page, int cid){
 
         int num=9*(page-1);
-        ResultSet rs = DBUtils.doQuery("select * from (select suser.*,store_img.imgurl from suser left join store_img on suser.sid=store_img.store_img_id)as a limit ?,9",num);
+        ResultSet rs = DBUtils.doQuery("select * from (select suser.*,store_img.imgurl from suser left join store_img on suser.sid=store_img.sid)as a limit ?,9",num);
 
         List<StoreImg> list   = new ArrayList<StoreImg>();
 

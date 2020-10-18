@@ -49,7 +49,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong>Amaze</strong> <small>后台管理模板</small>
+    <strong>${user}</strong> <small>的个人中心</small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>

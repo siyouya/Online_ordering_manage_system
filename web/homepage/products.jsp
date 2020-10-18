@@ -68,7 +68,7 @@ http://www.templatemo.com/free-website-templates/417-grill
       <div class="row">
         <div class="col-md-6">
           <div class="home-account">
-            <a href="#">Home</a>
+            <a href="index.jsp">Home</a>
             <a href="../customerMange/customer-index.jsp">我的账户</a>
           </div>
         </div>
@@ -146,7 +146,7 @@ http://www.templatemo.com/free-website-templates/417-grill
       <div class="col-md-12">
         <div class="heading-content">
           <h2>我们的菜单</h2>
-          <span>Home / <a href="about-us.html">菜单</a></span>
+          <span>Home / <a href="#">菜单</a></span>
         </div>
       </div>
     </div>

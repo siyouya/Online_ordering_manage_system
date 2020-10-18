@@ -38,7 +38,7 @@ public class DoRegServlet extends HttpServlet {
 				response.sendRedirect("../login.jsp");
 			} else{
 				System.out.println(result);
-				session.setAttribute("msg", "cg");
+				session.setAttribute("msg", "注册失败");
 			}
 		}else if ("store".equals(profession)) {
 
@@ -46,22 +46,22 @@ public class DoRegServlet extends HttpServlet {
 
 			int result=storeDao.reg(shopname,username,password,realname,telephone,address);
 			if (result>0){
-				session.setAttribute("msg", "cg");
-				request.getRequestDispatcher("../login.jsp").forward(request, response);
+				session.setAttribute("msg", "注册成功");
+				response.sendRedirect("../login.jsp");
 			} else{
 				System.out.println(result);
-				session.setAttribute("msg", "cg");
+				session.setAttribute("msg", "注册失败");
 			}
 
 		}else if ("rider".equals(profession)) {
 			RiderDao riderDao=new RiderDao();
 			int result= riderDao.reg(username,password,realname,telephone);
 			if (result>0){
-				session.setAttribute("msg", "cg");
-				request.getRequestDispatcher("../login.jsp").forward(request, response);
+				session.setAttribute("msg", "注册成功");
+				response.sendRedirect("../login.jsp");
 			} else{
 				System.out.println(result);
-				session.setAttribute("msg", "cg");
+				session.setAttribute("msg", "注册失败");
 			}
 		}
 

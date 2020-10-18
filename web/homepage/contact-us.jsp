@@ -66,7 +66,7 @@ http://www.templatemo.com/free-website-templates/417-grill
             <ul>
               <li><a href="index.jsp">Home</a></li>
               <li><a href="about-us.jsp">关于</a></li>
-              <li><a href="products.jsp">菜单</a></li>
+              <li><a href="#">菜单</a></li>
               <li><a href="contact-us.jsp">联系我们</a></li>
             </ul>
           </div>

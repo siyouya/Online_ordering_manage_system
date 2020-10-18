@@ -91,7 +91,7 @@
         $(this).siblings('span').html('');
       } else if(usernameVal.length<4){
         $(this).siblings('span').addClass('wrong');
-        $(this).siblings('span').html('用户名应为4-10位');
+        $(this).siblings('span').html('用户名应为2-10位');
       }else{
         $(this).siblings('span').addClass('wrong');
         $(this).siblings('span').html('用户名不能包含特殊字符');
@@ -176,8 +176,9 @@
         </select>
       </div>
       <br />
+      <input type="hidden" value="reg" name="op" />
       <div>
-        <input type="text"  style="display:none" placeholder="饭店名称" required="" id="shopname" name="shopname" value="null"/>
+        <input type="text"  style="display:none" placeholder="饭店名称" id="shopname" name="shopname" value="null"/>
       </div>
       <div>
         <input type="text" placeholder="用户名" required="" id="username" name="username" class="username" maxlength="12" />
@@ -201,7 +202,7 @@
         <br><span></span>
       </div>
       <div>
-        <input type="text" placeholder="地址" required="" id="address" name="address" maxlength="36"/>
+        <input type="text" placeholder="地址"  id="address" name="address" maxlength="36"/>
       </div>
 
       <div>
