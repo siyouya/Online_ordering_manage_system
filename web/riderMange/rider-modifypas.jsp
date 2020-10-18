@@ -16,7 +16,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>商家后台管理系统</title>
+  <title>骑手接单系统 - cssmoban</title>
   <meta name="description" content="这是一个 user 页面">
   <meta name="keywords" content="user">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -36,7 +36,7 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong></strong> <small>后台管理模板</small>
+    <strong>骑手后台管理模板</strong> <small></small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>

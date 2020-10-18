@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze后台管理系统模板HTML 404页面 - cssmoban </title>
+  <title>商家后台管理系统首页 - cssmoban</title>
   <meta name="description" content="这是一个404页面">
   <meta name="keywords" content="404">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">

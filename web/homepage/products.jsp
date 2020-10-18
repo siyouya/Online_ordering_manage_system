@@ -194,7 +194,7 @@ http://www.templatemo.com/free-website-templates/417-grill
             </div>
           </div>
           <div class="label-text">
-            <h3><a href="single-post.html">${dish.did.dishname}</a></h3>
+            <h3><a href="#">${dish.did.dishname}</a></h3>
             <span class="text-category">￥${dish.did.price}</span>
           </div>
         </div>
