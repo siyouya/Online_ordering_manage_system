@@ -239,7 +239,7 @@ public class DishServlet extends HttpServlet {
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
         HttpSession  session   = request.getSession();
-        int did= Integer.parseInt(request.getParameter("did_img"));
+        int did= Integer.parseInt(request.getParameter("did"));
         String dishname=request.getParameter("dishname");
         String number=request.getParameter("number");
         String rmaterial=request.getParameter("rmaterial");

@@ -22,8 +22,9 @@ http://www.templatemo.com/free-website-templates/417-grill
 $(document).ready(
         function (){$(".showsore").each(function (){
                   if ($(this).text()>8000){
-                    // $(this).text("超出距离");
+                     $(this).text("超出距离");
                     // $(this).show();
+                    $(this).parent().find("img").attr("src","/homepage/images/out1.png");
                     $(this).parent().find("a").removeAttr('href');
 
                   }

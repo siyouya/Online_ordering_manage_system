@@ -109,7 +109,7 @@ public class StoreDao {
                 store.setUsername(rs.getString("username"));
                 store.setRealname(rs.getString("realname"));
                 store.setTelephone(rs.getString("telephone"));
-                store.setAddress(rs.getString("address"));
+                store.setAddress(Long.toString(dis));
                 store.setIntro(rs.getString("intro"));
                 store.setState(rs.getInt("state"));
                 String imgurl=rs.getString("imgurl");

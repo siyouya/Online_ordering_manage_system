@@ -23,7 +23,7 @@ http://www.templatemo.com/free-website-templates/417-grill
   <meta name="viewport" content="width=device-width">
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+  <script src="/homepage/js/vendor/jquery-1.11.0.min.js" type="text/javascript"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/templatemo_style.css">
@@ -49,6 +49,17 @@ http://www.templatemo.com/free-website-templates/417-grill
 
 
   }
+  $(document).ready(
+          function (){$(".dishnum").each(function (){
+            if ($(this).text()<=0){
+              $(this).text("已售完");
+              // $(this).show();
+              $(this).parent().attr("class","hidden");
+
+            }
+
+          });
+          });
 </script>
 <body>
 <%
@@ -183,6 +194,7 @@ http://www.templatemo.com/free-website-templates/417-grill
 <%--      产品开始--%>
       <c:forEach items="${list}" var="dish">
       <div class="col-md-3 col-sm-6 mix portfolio-item ">
+        <div hidden class="dishnum">${dish.did.number}</div>
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
             <img src="${dish.imgurl}" height="200" width="300" alt="" />

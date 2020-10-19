@@ -87,7 +87,7 @@ public class UploadServlet extends HttpServlet {
                                 "文件上传成功!");
                         String path="./../upload/"+fileName;
                         request.setAttribute("path", path);
-                        request.getRequestDispatcher("/store?op=add_img").forward(request,response);
+                        request.getRequestDispatcher("/dish?op=add_img").forward(request,response);
                     }
                 }
             }
